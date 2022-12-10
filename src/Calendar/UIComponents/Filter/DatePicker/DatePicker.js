@@ -16,6 +16,8 @@ import {
   DateContainer,
   DateText,
   extendDateNavButton,
+  ShowDesktop,
+  ShowDevice,
 } from './DatePicker.style';
 import { convertIsoTOMMDDYYYY, WEEK_START_DAY } from './DatePicker.helper';
 
@@ -181,7 +183,7 @@ const DatePicker = ({ ...props }) => {
   return (
     <div style={{ padding: '13px' }}>
       <DatePickerWrapper>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <NewButton
             btnText={currentTimeBtn}
             onClick={() => {
@@ -214,9 +216,10 @@ const DatePicker = ({ ...props }) => {
             <DateText>{language === 'en' ? dateString() : toIndiaDigits(dateString())}</DateText>
             <Icon icon={new IconsStore(Icons).getIcon('downcarret')} width={11} />
           </DateContainer>
+          <ShowDesktop>
           <div
             className={isCalendarShown ? 'calendar-dropDown-opened' : 'calendar-dropDown-close'}
-            style={{ zIndex: '3', position: 'absolute' }}
+            style={{ zIndex: '30', position: 'absolute' }}
             id="searchContainer-DateBtn-calendar"
           >
             <div style={{ top: '30%', position: 'relative' }} />
@@ -230,6 +233,24 @@ const DatePicker = ({ ...props }) => {
               weekStartDay={weekStartDay}
             />
           </div>
+          </ShowDesktop>
+          <ShowDevice>
+          <div
+            className={isCalendarShown ? 'calendar-dropDown-opened' : 'calendar-dropDown-close'}
+            style={{ zIndex: '30' }}
+            id="searchContainer-DateBtn-calendar"
+          >
+            <Calendar
+              type={datePickerMode === DATE_PICKER_MODE.SINGLE_PICK ? 'single' : 'week'}
+              date={PickerDateFormatter(startDate)}
+              startDate={PickerDateFormatter(startDate)}
+              endDate={PickerDateFormatter(endDate)}
+              isArabic={language !== 'en'}
+              onChange={onDatePickerSelect}
+              weekStartDay={weekStartDay}
+            />
+          </div>
+          </ShowDevice>
         </div>
       </DatePickerWrapper>
     </div>

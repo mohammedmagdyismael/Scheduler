@@ -46,7 +46,7 @@ export const DateContainer = styled(DatePickerWrapper)`
   display: flex;
   justify-content: center;
   ${props => props.theme.media.phone`
-    margin-top: 5px;
+    margin: 5px auto;
     flex-direction: row;
   `};
   ${props =>
@@ -56,6 +56,18 @@ export const DateContainer = styled(DatePickerWrapper)`
   border-radius: 6px;
   `
       : ''};
+`;
+
+export const ShowDesktop = styled.div`
+${props => props.theme.media.phone`
+    display: none;
+  `};
+`;
+
+export const ShowDevice = styled.div`
+${props => props.theme.media.desktop`
+    display: none;
+  `};
 `;
 
 export const DateText = styled.p`
