@@ -1,5 +1,6 @@
 {
-  "name": "mypens",
+  "homepage": "http://mohammedmagdyismael.github.io/Calendar",
+  "name": "calendar",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
