@@ -28,46 +28,48 @@ const App = ({ ...props }) => {
         isDimmed: false,
       } */
 
-    const dataForDayViewSample = [
-        {
-            id: 0,
-            columnTitle: 'Column Name 1',
-            columnDescription: 'Column Description',
-            columnSlots: [
-                {
-                    id: 0,
-                    title: 'Details title',
-                    titleIcon: undefined,
-                    descA: 'Details Description A',
-                    descAIcon: 'specialty',
-                    descB: 'Details Description B',
-                    descBIcon: 'time',
-                    from: "2020-01-01T08:00:00",
-                    to: "2020-01-01T09:30:00",
-                    isDimmed: true,
-                  } 
-            ]
-        },
-        {
-            id: 1,
-            columnTitle: 'Column Name 2',
-            columnDescription: 'Column Description',
-            columnSlots: [
-                {
-                    id: 0,
-                    title: 'Details title',
-                    titleIcon: undefined,
-                    descA: 'Details Description A',
-                    descAIcon: 'specialty',
-                    descB: 'Details Description B',
-                    descBIcon: 'time',
-                    from: "2020-01-01T08:00:00",
-                    to: "2020-01-01T09:30:00",
-                    isDimmed: false,
-                  } 
-            ]
-        },
-    ];
+      // git config --global credential.helper wincred if not deployed on github
+
+    const randomIntFromInterval = (min, max) => { // min and max included 
+        let num;
+        num = Math.floor(Math.random() * (max - min + 1) + min);
+        num = num.toString();
+        while (num.length < 2) num = "0" + num;
+        return num;
+    }
+
+    const dataForDayViewSample = [];
+    for (let col = 0; col < 10; col++) {
+        const slots = [];
+        const from = randomIntFromInterval(0, 12);
+        const to = randomIntFromInterval(Number(from), Number(from) + 3);
+        const min = randomIntFromInterval(50, 59);
+
+        slots.push(
+            {
+                id: 0,
+                title: `Details title ${0}`,
+                titleIcon: undefined,
+                descA: 'Details Description A',
+                descAIcon: 'calendar',
+                descB: 'Details Description B',
+                descBIcon: 'time',
+                from: `2020-01-01T${from}:00:00`,
+                to: `2020-01-01T${to}:00:00`,
+                isDimmed: false,
+              } 
+        );
+
+        dataForDayViewSample.push(
+            {
+                id: col,
+                columnTitle: `Column Name ${col}`,
+                columnDescription: 'Column Description',
+                columnSlots: slots,
+            }
+        );
+        
+    }
 
     const dataForWeekViewSample = [
         {
@@ -418,6 +420,7 @@ const App = ({ ...props }) => {
                         setEndDate(val.endDate)
                     }
                 }}
+                weekStartDay="Saturday"
             />
             <Schedular    
                 language={language}  

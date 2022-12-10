@@ -154,7 +154,7 @@ export const DataSlot = styled.div`
   padding: 4px 8px;
   gap: 12px;
   position: absolute;
-  width: 99%;
+  width: 89%;
   
   border-radius: 4px;
   color: #fff;
@@ -163,6 +163,14 @@ export const DataSlot = styled.div`
   height: ${props => (props.slotHeight ? `${props.slotHeight}px` : '')};
   & > p {
     margin: 0px;
+  }
+
+  .tooltip {
+    width: 100%;
+  }
+
+  .tooltip > div {
+    overflow: hidden;
   }
 
   background: #e6f1ff;

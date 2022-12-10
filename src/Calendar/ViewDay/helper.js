@@ -5,6 +5,11 @@ import IconsStore from '../UIComponents/icon/IconsStore';
 import Icons from '../UIComponents/Icons';
 import { SlotDesc, SlotTitle, IconContainer, ExtendedToolTip } from './ViewDay.style';
 
+import {
+  SlotTitleContainer,
+  SlotDescContainer,
+  SlotContentContainer,
+} from '../ViewWeek/ViewWeek.style';
 
 export const toIndiaDigits = number => {
   const id = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -252,59 +257,18 @@ export const renderDataSlotMini = (columnSlot, extendSlotTitle, extendSlotDesc) 
   );
   return (
     <ExtendedToolTip message={message} showOnHover position="bottom" arrowPosition="bottom">
-      <div style={{ display: 'flex' }}>
-        <div style={{ display: 'flex', marginBottom: '2px' }}>
-          {columnSlot.titleIcon && (
-            <IconContainer>
-              <Icon
-                className="icon"
-                icon={new IconsStore(Icons).getIcon(columnSlot.titleIcon)}
-                width={10}
-                color="#484848"
-              />
-            </IconContainer>
-          )}
+      <SlotContentContainer>
+        <SlotTitleContainer>
           {columnSlot.title && (
             <SlotTitle extendSlotTitle={extendSlotTitle}>{columnSlot.title}</SlotTitle>
           )}
-        </div>
-        <div style={{ display: 'flex', overflow: 'hidden', margin: '0px 4px' }}>
-          <div style={{ display: 'flex' }}>
-            {columnSlot.descAIcon && (
-              <IconContainer>
-                <Icon
-                  className="icon"
-                  icon={new IconsStore(Icons).getIcon(columnSlot.descAIcon)}
-                  width={10}
-                  color="#484848"
-                />
-              </IconContainer>
-            )}
-            {columnSlot.descA && (
-              <SlotDesc style={{ lineHeight: '18px' }} extendSlotDesc={extendSlotDesc}>
-                {columnSlot.descA}
-              </SlotDesc>
-            )}
-          </div>
-          <div style={{ display: 'flex' }}>
-            {columnSlot.descBIcon && (
-              <IconContainer>
-                <Icon
-                  className="icon"
-                  icon={new IconsStore(Icons).getIcon(columnSlot.descBIcon)}
-                  width={10}
-                  color="#484848"
-                />
-              </IconContainer>
-            )}
-            {columnSlot.descB && (
-              <SlotDesc style={{ lineHeight: '18px' }} extendSlotDesc={extendSlotDesc}>
-                {columnSlot.descB}
-              </SlotDesc>
-            )}
-          </div>
-        </div>
-      </div>
+        </SlotTitleContainer>
+        <SlotDescContainer>
+          <SlotDesc style={{ lineHeight: '18px' }} extendSlotDesc={extendSlotDesc}>
+            {`${columnSlot.descA}, ${columnSlot.descB}`}
+          </SlotDesc>
+        </SlotDescContainer>
+      </SlotContentContainer>
     </ExtendedToolTip>
   );
 };

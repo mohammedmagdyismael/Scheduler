@@ -173,7 +173,7 @@ export const SlotContentContainer = styled.div`
 export const DataSlot = styled.div`
   padding: 5px 8px 3px;
   gap: 12px;
-  width: 99%;
+  width: 89%;
   margin-bottom: 2px;
   
   border-radius: 4px;
