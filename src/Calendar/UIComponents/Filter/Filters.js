@@ -29,8 +29,7 @@ const Filters = ({ ...props }) => {
   return (
     <FiltersContainer>
       <FiltersContainerWrapper>
-        <div style={{ display: 'flex', width: '75%' }}>
-          <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+          <div>
             <FilterSectionContainer id="filter-container__date-picker">
               <DatePicker
                 startDate={startDate}
@@ -42,7 +41,6 @@ const Filters = ({ ...props }) => {
               />
             </FilterSectionContainer>
           </div>
-        </div>
         <FilterSectionContainer>
           <ButtonsContainer>
             <div style={{ minWidth: '100px', margin: '0px 4px' }}>

@@ -3,9 +3,9 @@
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   display: block;
-  height: 345px;
+  height: 310px;
   margin: 0 auto;
-  max-width: 295px;
+  max-width: 285px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -76,6 +76,7 @@
   height: 271px;
   padding: 8px;
   width: 254px;
+  margin: auto;
 }
 .calendar-weekday-v2, .calendar-day-v2 {
   display: flex;

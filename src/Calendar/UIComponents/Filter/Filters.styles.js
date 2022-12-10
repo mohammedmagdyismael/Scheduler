@@ -11,15 +11,15 @@ export const FiltersContainerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 64px;
-  // padding: 13px 16px;
-  // justify-content: space-between;
+  padding: 0px 55px;
+  justify-content: space-between;
 `;
 
 export const FilterSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 25%;
+  // width: 25%;
 `;
 
 export const ExtendedToolTip = styled(Tooltip)`
