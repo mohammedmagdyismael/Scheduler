@@ -239,6 +239,11 @@ const App = ({ ...props }) => {
             columnDescription: 'Column Description',
             columnSlots: [
                 {
+                    isDisabled: true,
+                    dayOfWeek: 'Tuesday',
+                    daySlots: [],
+                },
+                {
                     isDisabled: false,
                     dayOfWeek: 'Tuesday',
                     daySlots: [
@@ -401,6 +406,7 @@ const App = ({ ...props }) => {
     return (
         <div style={{ direction: language === 'en' ? 'ltr' : 'rtl' }}>
             <Filter 
+                setLanguage={setLanguage}
                 startDate={startDate}
                 endDate={endDate}
                 language={language}  

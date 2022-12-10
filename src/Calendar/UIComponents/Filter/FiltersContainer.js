@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Filters from './Filters';
-import { getDatePickerDropDownList } from './Filters.helper';
+import { getDatePickerDropDownList, getLanguagesList } from './Filters.helper';
 
 
 
 const FiltersContainer = ({ ...props }) => {
   const {
+    setLanguage,
     language,
     setDatePickerMode,
     datePickerMode,
@@ -16,12 +17,17 @@ const FiltersContainer = ({ ...props }) => {
 
 
   const datePickerDropdownList = getDatePickerDropDownList(language);
+  const languagesList = getLanguagesList();
+
   return (
     <Filters
       {...props}
       datePickerMode={datePickerMode}
       setDatePickerMode={setDatePickerMode}
       datePickerDropdownList={datePickerDropdownList}
+      languagesList={languagesList}
+      language={language}
+      setLanguage={setLanguage}
     />
   );
 };

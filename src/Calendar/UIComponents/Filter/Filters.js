@@ -17,6 +17,7 @@ import DatePicker from './DatePicker';
 const Filters = ({ ...props }) => {
   const {
     datePickerDropdownList,
+    languagesList,
     startDate,
     endDate,
     onChangeDate,
@@ -24,6 +25,7 @@ const Filters = ({ ...props }) => {
     datePickerMode,
     setDatePickerMode,
     weekStartDay,
+    setLanguage,
   } = props;
 
   return (
@@ -43,7 +45,7 @@ const Filters = ({ ...props }) => {
           </div>
         <FilterSectionContainer>
           <ButtonsContainer>
-            <div style={{ minWidth: '100px', margin: '0px 4px' }}>
+            <div style={{ minWidth: '100px', margin: '0px 50px' }}>
               <Field
                 extendDropDownList={ExtendDropDownListDatePicker}
                 extendFieldText={ExtendFieldText}
@@ -60,6 +62,28 @@ const Filters = ({ ...props }) => {
                 isDropDown
                 language="en"
                 fieldIcon="calendar"
+                fieldIconSize={11}
+                isDisabled={false}
+                variationB
+              />
+            </div>
+            <div style={{ minWidth: '100px', margin: '0px 4px' }}>
+              <Field
+                extendDropDownList={ExtendDropDownListDatePicker}
+                extendFieldText={ExtendFieldText}
+                placeHolder="language"
+                extendDropDownListItem={ExtendDropDownListItem}
+                extendDropDownStyle={ExtendDropDownStyle}
+                fieldValue={language}
+                componentName="filters-language-dropdown"
+                options={languagesList}
+                onChanges={val => setLanguage(val)}
+                icon="downcarret"
+                iconSize={12}
+                isDynamic
+                isDropDown
+                language="en"
+                fieldIcon="language_switch"
                 fieldIconSize={11}
                 isDisabled={false}
                 variationB

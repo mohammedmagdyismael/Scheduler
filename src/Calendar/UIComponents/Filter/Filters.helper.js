@@ -155,6 +155,33 @@ export const getDatePickerDropDownList = language => {
   return dropdownList;
 };
 
+export const languages = [
+  {
+    name: 'English',
+    key: 'en',
+  },
+  {
+    name: 'عربي',
+    key: 'ar',
+  },
+];
+
+export const getLanguagesList = () => {
+  const dropdownList = [];
+  languages.forEach(item => {
+    dropdownList.push({
+      fieldValue: item.name,
+      value: item.key,
+      key: item.key,
+      isEnabled: true,
+      extras: {
+        ...item,
+      },
+    });
+  });
+  return dropdownList;
+};
+
 export const getDoctorsDropDownList = list => {
   if (list && list.length > 0) {
     list.sort((a, b) => {
