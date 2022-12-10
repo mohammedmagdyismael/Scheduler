@@ -24,6 +24,8 @@ const App = ({ ...props }) => {
         isDimmed: false,
       } */
 
+    const viewMode = 0;
+
     const dataForDayViewSample = [
         {
             id: 0,
@@ -400,11 +402,11 @@ const App = ({ ...props }) => {
         emptyStateView={<p>Test</p>}
         isLoading={false}
         isTodaySelected
-        data={dataForWeekViewSample}
+        data={viewMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
         firstTimeSlotInViewTime="2020-01-01T05:00:00"
         LastTimeSlotInViewTime="2020-01-01T13:00:00"
         isOffDay={false}
-        selectedViewIndex={1}
+        selectedViewIndex={viewMode}
         weekStartDay="Saturday"
         // extendDataSlot={}
         // extendSlot={}

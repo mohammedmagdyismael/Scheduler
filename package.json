@@ -4,7 +4,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "articles": "^0.2.2",
     "classnames": "^2.3.1",
+    "color": "^3.0.0",
     "color-string": "^1.5.2",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
