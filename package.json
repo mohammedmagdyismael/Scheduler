@@ -18,7 +18,7 @@
   },
   "scripts": {
     "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d build",
+    "deploy" : "gh-pages -d build && cp .htaccess build && cp web.config build",
     "start": "react-scripts start",
     "build": "react-scripts build && cp .htaccess build && cp web.config build",
     "copy" : "cp .htaccess build",

@@ -5,14 +5,25 @@ export const FiltersContainer = styled.div`
   background: #ffffff;
   box-shadow: inset 0px -1px 0px #e3e6ea;
   height: 64px;
+  ${props => props.theme.media.phone`
+    height: 120px;
+  `};
+  ${props => props.theme.media.tablet`
+    height: 120px;
+  `};
 `;
 
 export const FiltersContainerWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  height: 64px;
   padding: 0px 55px;
   justify-content: space-between;
+  ${props => props.theme.media.phone`
+    flex-direction: column;
+  `};
+  ${props => props.theme.media.tablet`
+    flex-direction: column;
+  `};
 `;
 
 export const FilterSectionContainer = styled.div`
@@ -64,6 +75,7 @@ export const IconContainer = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
 `;
 

@@ -63,7 +63,7 @@ export const DayColumnHeaderContainer = styled.div`
 
 export const ColumnsWrapper = styled.div`
   display: grid;
-  grid-template-columns: 4% 96%;
+  grid-template-columns: 65px 100%;
 `;
 
 export const DayGridColumnsWrapper = styled.div`
