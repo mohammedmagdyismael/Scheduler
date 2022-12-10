@@ -58,7 +58,7 @@ const Schedular = ({ ...props }) => {
         }
       }
     }
-  }, [isLoading]);
+  }, [isLoading, selectedViewIndex]);
 
   const renderColumnsHeadersLoading = () => (
     <div style={{ display: 'flex' }}>
