@@ -405,6 +405,13 @@ const App = ({ ...props }) => {
         },
     ];
 
+    const isSameDay = (d1, d2) =>
+        d1.getDate() === d2.getDate() &&
+        d1.getMonth() === d2.getMonth() &&
+        d1.getFullYear() === d2.getFullYear();
+    const isToday = date => isSameDay(date, new Date());
+    const isTodaySelected = isToday(new Date(startDate), new Date());
+
     return (
         <div style={{ direction: language === 'en' ? 'ltr' : 'rtl' }}>
             <Filter 
@@ -426,7 +433,7 @@ const App = ({ ...props }) => {
                 language={language}  
                 emptyStateView={<p>Test</p>}
                 isLoading={false}
-                isTodaySelected
+                isTodaySelected={isTodaySelected}
                 data={datePickerMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
                 firstTimeSlotInViewTime="2020-01-01T05:00:00"
                 LastTimeSlotInViewTime="2020-01-01T13:00:00"
