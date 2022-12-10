@@ -1,0 +1,12 @@
+body {
+    background-color: #cccccc;
+    font-family: system-ui !important;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+html {
+    position: relative;
+}

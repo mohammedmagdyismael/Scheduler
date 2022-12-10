@@ -1,0 +1,8 @@
+[ignore]
+config-overrides.js
+[include]
+[libs]
+[lints]
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
+[strict]
