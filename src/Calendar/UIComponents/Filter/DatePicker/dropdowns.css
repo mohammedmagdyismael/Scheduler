@@ -1,0 +1,11 @@
+.calendar-dropDown-opened {
+  z-index: 1;
+  position: relative;
+  display: block;
+}
+
+.calendar-dropDown-close {
+  z-index: 1;
+  position: relative;
+  display: none;
+}

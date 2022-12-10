@@ -3,10 +3,13 @@
 import React from 'react';
 import _ from 'lodash';
 import Articles from 'articles';
-import { Flex } from 'grid-styled';
-
+import styled from 'styled-components';
 import Text from '../text/Text';
 import Image from '../image/Image';
+
+const Flex = styled.div`
+  display: flex;
+`;
 
 /**
  * Adapts old items object into the new one

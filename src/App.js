@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Schedular from './Calendar';
+import Filter from './Calendar/UIComponents/Filter';
 import './App.css'
 
 const App = ({ ...props }) => {
-
+    const [startDate, setStartDate] = useState('12/13/2022');
+    const [endDate, setEndDate] = useState('12/28/2022');
 
     /**
      * selectedViewIndex: => Day view: 0 , Week view: 1  
@@ -397,36 +399,44 @@ const App = ({ ...props }) => {
     ];
 
     return (
-        <Schedular    
-        language='en'   
-        emptyStateView={<p>Test</p>}
-        isLoading={false}
-        isTodaySelected
-        data={viewMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
-        firstTimeSlotInViewTime="2020-01-01T05:00:00"
-        LastTimeSlotInViewTime="2020-01-01T13:00:00"
-        isOffDay={false}
-        selectedViewIndex={viewMode}
-        weekStartDay="Saturday"
-        // extendDataSlot={}
-        // extendSlot={}
-        // extendDayColumnWrapper={}
-        // extendSlotTitle={}
-        // extendSlotDesc={}
-        onClickDataSlot={val => {
-        if (val) console.log({ accountKey: val.id });
-        }}
-        /* onClickSlot={() => {
-        // fire action here
-        console.log('Slot Clicked!');
-        }} */
-            /* onClickHeaderAction={() => {
-            // fire action here
-        }} */
-            /* onHScrollEnds={() => {
-            // fire action here
-        }} */
-         {...props} />   
+        <div>
+            <Filter 
+                startDate={startDate}
+                endDate={endDate}
+                language='en'   
+            />
+            <Schedular    
+                language='en'   
+                emptyStateView={<p>Test</p>}
+                isLoading={false}
+                isTodaySelected
+                data={viewMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
+                firstTimeSlotInViewTime="2020-01-01T05:00:00"
+                LastTimeSlotInViewTime="2020-01-01T13:00:00"
+                isOffDay={false}
+                selectedViewIndex={viewMode}
+                weekStartDay="Saturday"
+                // extendDataSlot={}
+                // extendSlot={}
+                // extendDayColumnWrapper={}
+                // extendSlotTitle={}
+                // extendSlotDesc={}
+                onClickDataSlot={val => {
+                if (val) console.log({ accountKey: val.id });
+                }}
+                /* onClickSlot={() => {
+                // fire action here
+                console.log('Slot Clicked!');
+                }} */
+                    /* onClickHeaderAction={() => {
+                    // fire action here
+                }} */
+                    /* onHScrollEnds={() => {
+                    // fire action here
+                }} */
+                {...props} 
+            />   
+         </div>
                 
     )
 }
