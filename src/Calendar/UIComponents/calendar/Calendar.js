@@ -492,6 +492,20 @@ class Calendar extends Component {
     return (
       <div className="calendar-wrapper-v2">
         <div className="calendar-header-v2">
+          <div
+            className={ClassNames('calendar-arrow-v2', {
+              'calendar-arrow-v2--disable': this.state.disablePreviousMonthButton,
+              'calendar-arrow-v2--rotated': isArabic,
+            })}
+            onClick={this.onClickLeftArrowCalendar}
+            onKeyDown={() => {}}
+          >
+            <Icon
+              icon={new IconsStore(Icons).getIcon('arrow_left')}
+              width={ARROW_WIDTH}
+              color={getIconColor(this.state.disablePreviousMonthButton)}
+            />
+          </div>
           <div className="calendar-header-title-v2">
             <div className="calendar-header-title-month-v2">{currentMonthName}</div>
             <div className="calendar-header-title-year-v2">
@@ -506,20 +520,6 @@ class Calendar extends Component {
                 reverse={isArabic}
               />
             </div>
-          </div>
-          <div
-            className={ClassNames('calendar-arrow-v2', {
-              'calendar-arrow-v2--disable': this.state.disablePreviousMonthButton,
-              'calendar-arrow-v2--rotated': isArabic,
-            })}
-            onClick={this.onClickLeftArrowCalendar}
-            onKeyDown={() => {}}
-          >
-            <Icon
-              icon={new IconsStore(Icons).getIcon('arrow_left')}
-              width={ARROW_WIDTH}
-              color={getIconColor(this.state.disablePreviousMonthButton)}
-            />
           </div>
           <div
             className={ClassNames('calendar-arrow-v2', {
