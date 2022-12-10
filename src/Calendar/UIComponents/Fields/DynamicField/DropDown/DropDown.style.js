@@ -37,6 +37,7 @@ export const FieldValue = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0px;
   ${props => (props.extendFieldText ? props.extendFieldText : '')};
 `;
 
@@ -82,6 +83,7 @@ export const ListItem = styled.div`
 export const ItemLabel = styled.p`
   color: ${props => (props.isEnabled ? '#484848' : '#B9B9B9')};
   font-size: inherit;
+  margin: 0px;
 `;
 export const ItemDescription = styled.p`
   font-size: 13px;

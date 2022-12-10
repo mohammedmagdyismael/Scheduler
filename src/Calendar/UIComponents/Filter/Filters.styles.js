@@ -4,27 +4,22 @@ import Tooltip from '../tooltip/Tooltip';
 export const FiltersContainer = styled.div`
   background: #ffffff;
   box-shadow: inset 0px -1px 0px #e3e6ea;
+  height: 64px;
 `;
 
 export const FiltersContainerWrapper = styled.div`
   display: flex;
   flex-direction: row;
   height: 64px;
-  padding: 13px 16px;
-  justify-content: space-between;
+  // padding: 13px 16px;
+  // justify-content: space-between;
 `;
 
 export const FilterSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  :first-child {
-    justify-content: flex-start;
-  }
-
-  :last-child {
-    justify-content: flex-end;
-  }
+  width: 25%;
 `;
 
 export const ExtendedToolTip = styled(Tooltip)`
@@ -70,8 +65,6 @@ export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: flex-end;
-
 `;
 
 export const SwitchViewBtnsContainer = styled.div`

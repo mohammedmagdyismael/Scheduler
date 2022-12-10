@@ -6,6 +6,7 @@ import './App.css'
 const App = ({ ...props }) => {
     const [startDate, setStartDate] = useState('12/13/2022');
     const [endDate, setEndDate] = useState('12/28/2022');
+    const [datePickerMode, setDatePickerMode] = useState(0);
 
     /**
      * selectedViewIndex: => Day view: 0 , Week view: 1  
@@ -25,8 +26,6 @@ const App = ({ ...props }) => {
         to: "2020-01-01T02:30:00",
         isDimmed: false,
       } */
-
-    const viewMode = 0;
 
     const dataForDayViewSample = [
         {
@@ -404,17 +403,19 @@ const App = ({ ...props }) => {
                 startDate={startDate}
                 endDate={endDate}
                 language='en'   
+                datePickerMode={datePickerMode}
+                setDatePickerMode={setDatePickerMode}
             />
             <Schedular    
                 language='en'   
                 emptyStateView={<p>Test</p>}
                 isLoading={false}
                 isTodaySelected
-                data={viewMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
+                data={datePickerMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
                 firstTimeSlotInViewTime="2020-01-01T05:00:00"
                 LastTimeSlotInViewTime="2020-01-01T13:00:00"
                 isOffDay={false}
-                selectedViewIndex={viewMode}
+                selectedViewIndex={datePickerMode}
                 weekStartDay="Saturday"
                 // extendDataSlot={}
                 // extendSlot={}

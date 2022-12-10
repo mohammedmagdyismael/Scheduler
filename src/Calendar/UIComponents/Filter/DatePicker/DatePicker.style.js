@@ -5,7 +5,7 @@ export const extendTodayButton = css`
   background: #ffffff;
   border: 1px solid #e3e6ea;
   border-radius: 8px;
-  height: 36px;
+  height: 17px;
   font-weight: 400;
   font-size: 13px;
   line-height: 15px;
@@ -15,7 +15,7 @@ export const extendDateNavButton = css`
   background: #ffffff;
   border: 1px solid #e3e6ea;
   border-radius: 8px;
-  height: 36px;
+  height: 17px;
   font-weight: 400;
   font-size: 24px;
   line-height: 12px;

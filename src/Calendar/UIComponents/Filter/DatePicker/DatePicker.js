@@ -179,7 +179,7 @@ const DatePicker = ({ ...props }) => {
   }
 
   return (
-    <div>
+    <div style={{ padding: '13px' }}>
       <DatePickerWrapper>
         <NewButton
           btnText={currentTimeBtn}
