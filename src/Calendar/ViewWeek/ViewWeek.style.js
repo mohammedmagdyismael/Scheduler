@@ -192,16 +192,12 @@ export const DataSlot = styled.div`
     overflow: hidden;
   }
 
+  background: #e6f1ff;
   ${props =>
     props.isDimmed
-      ? `
-      background: #E6F1FF;
+      && `
       opacity: 0.4;
-    `
-      : `
-      background: #e6f1ff;
-  
-  `}
+    `}
 
   ${props =>
     props.isClickable &&
