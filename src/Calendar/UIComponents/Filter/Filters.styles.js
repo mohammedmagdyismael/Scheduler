@@ -144,7 +144,7 @@ export const ExtendDropDownList = css`
 `;
 
 export const ExtendDropDownListDatePicker = css`
-  min-width: 97px;
+  min-width: 125px;
   z-index: 10;
 `;
 

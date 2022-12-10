@@ -7,6 +7,7 @@ const App = ({ ...props }) => {
     const [startDate, setStartDate] = useState('12/13/2022');
     const [endDate, setEndDate] = useState('12/28/2022');
     const [datePickerMode, setDatePickerMode] = useState(0);
+    const [language, setLanguage] = useState('en');
 
     /**
      * selectedViewIndex: => Day view: 0 , Week view: 1  
@@ -398,16 +399,22 @@ const App = ({ ...props }) => {
     ];
 
     return (
-        <div>
+        <div style={{ direction: language === 'en' ? 'ltr' : 'rtl' }}>
             <Filter 
                 startDate={startDate}
                 endDate={endDate}
-                language='en'   
+                language={language}  
                 datePickerMode={datePickerMode}
                 setDatePickerMode={setDatePickerMode}
+                onChangeDate={val => {
+                    if (val) {
+                        setStartDate(val.startDate);
+                        setEndDate(val.endDate)
+                    }
+                }}
             />
             <Schedular    
-                language='en'   
+                language={language}  
                 emptyStateView={<p>Test</p>}
                 isLoading={false}
                 isTodaySelected

@@ -9,6 +9,7 @@ export const extendTodayButton = css`
   font-weight: 400;
   font-size: 13px;
   line-height: 15px;
+  width: 100px;
 `;
 
 export const extendDateNavButton = css`
