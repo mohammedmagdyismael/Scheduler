@@ -45,7 +45,7 @@ const Filters = ({ ...props }) => {
           </div>
         <FilterSectionContainer>
           <ButtonsContainer>
-            <div style={{ minWidth: '100px', margin: '0px 50px' }}>
+            <div style={{ minWidth: '100px' }}>
               <Field
                 extendDropDownList={ExtendDropDownListDatePicker}
                 extendFieldText={ExtendFieldText}
@@ -67,7 +67,7 @@ const Filters = ({ ...props }) => {
                 variationB
               />
             </div>
-            <div style={{ minWidth: '100px', margin: '0px 4px' }}>
+            <div style={{ minWidth: '100px' }}>
               <Field
                 extendDropDownList={ExtendDropDownListDatePicker}
                 extendFieldText={ExtendFieldText}

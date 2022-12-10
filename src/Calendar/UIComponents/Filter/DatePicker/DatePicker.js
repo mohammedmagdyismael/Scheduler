@@ -181,29 +181,31 @@ const DatePicker = ({ ...props }) => {
   return (
     <div style={{ padding: '13px' }}>
       <DatePickerWrapper>
-        <NewButton
-          btnText={currentTimeBtn}
-          onClick={() => {
-            setToday();
-          }}
-          extendButtonStyle={extendTodayButton}
-        />
-        <PickerBtns>
+        <div style={{ display: 'flex' }}>
           <NewButton
-            btnText="<"
+            btnText={currentTimeBtn}
             onClick={() => {
-              setPrevday();
+              setToday();
             }}
-            extendButtonStyle={extendDateNavButton}
+            extendButtonStyle={extendTodayButton}
           />
-          <NewButton
-            btnText=">"
-            onClick={() => {
-              setNextday();
-            }}
-            extendButtonStyle={extendDateNavButton}
-          />
-        </PickerBtns>
+          <PickerBtns>
+            <NewButton
+              btnText="<"
+              onClick={() => {
+                setPrevday();
+              }}
+              extendButtonStyle={extendDateNavButton}
+            />
+            <NewButton
+              btnText=">"
+              onClick={() => {
+                setNextday();
+              }}
+              extendButtonStyle={extendDateNavButton}
+            />
+          </PickerBtns>
+        </div>
         <div id="date-picker-calendar">
           <DateContainer
             onClick={() => toggleCalendarShown(!isCalendarShown)}

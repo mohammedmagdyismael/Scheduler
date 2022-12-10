@@ -25,12 +25,18 @@ export const extendDateNavButton = css`
 export const DatePickerWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  ${props => props.theme.media.phone`
+    flex-direction: column;
+  `};
 `;
 
 export const PickerBtns = styled(DatePickerWrapper)`
   width: 98px;
   justify-content: space-between;
   margin: 0px 8px;
+  ${props => props.theme.media.phone`
+    flex-direction: row;
+  `};
 `;
 
 export const DateContainer = styled(DatePickerWrapper)`
@@ -39,6 +45,10 @@ export const DateContainer = styled(DatePickerWrapper)`
   width: 190px;
   display: flex;
   justify-content: center;
+  ${props => props.theme.media.phone`
+    margin-top: 5px;
+    flex-direction: row;
+  `};
   ${props =>
     props.isCalendarShown
       ? `

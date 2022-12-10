@@ -6,7 +6,7 @@ export const FiltersContainer = styled.div`
   box-shadow: inset 0px -1px 0px #e3e6ea;
   height: 64px;
   ${props => props.theme.media.phone`
-    height: 120px;
+    height: 160px;
   `};
   ${props => props.theme.media.tablet`
     height: 120px;
@@ -20,6 +20,7 @@ export const FiltersContainerWrapper = styled.div`
   justify-content: space-between;
   ${props => props.theme.media.phone`
     flex-direction: column;
+    padding: 0px 0px;
   `};
   ${props => props.theme.media.tablet`
     flex-direction: column;
@@ -75,8 +76,8 @@ export const IconContainer = styled.div`
 export const ButtonsContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-between;
+  width: 250px;
 `;
 
 export const SwitchViewBtnsContainer = styled.div`
