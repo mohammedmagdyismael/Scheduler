@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { space, width } from 'styled-system';
-// import { Flex } from 'grid-styled';
 
 const NoAnimationFlex = styled.div`
   display: flex;

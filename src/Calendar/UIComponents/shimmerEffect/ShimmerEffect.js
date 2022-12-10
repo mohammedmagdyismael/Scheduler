@@ -1,5 +1,3 @@
-// import { Flex } from 'grid-styled';
-
 import styled from 'styled-components';
 import { shimmerEffect } from '../base/Animations';
 import { COLORS_VALUES, COLORS } from '../base/Colors';
