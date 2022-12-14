@@ -13,7 +13,15 @@ const Schedular = ({ ...props }) => {
     firstTimeSlotInViewTime,
     emptyStateView,
     selectedViewIndex,
+    startDate,
   } = props;
+
+  const isSameDay = (d1, d2) =>
+        d1.getDate() === d2.getDate() &&
+        d1.getMonth() === d2.getMonth() &&
+        d1.getFullYear() === d2.getFullYear();
+    const isToday = date => isSameDay(date, new Date());
+    const isTodaySelected = isToday(new Date(startDate), new Date());
 
   useEffect(() => {
     if (!isLoading) {
@@ -45,7 +53,7 @@ const Schedular = ({ ...props }) => {
       }
       switch (selectedViewIndex) {
         case SCHEDULAR_VIEWS.DAY:
-          return <ViewDay {...props} />;
+          return <ViewDay {...props} isTodaySelected={isTodaySelected} />;
         case SCHEDULAR_VIEWS.WEEK:
           return <ViewWeek {...props} />;
         default:

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import Schedular from './Calendar';
 import Filter from './Calendar/UIComponents/Filter';
+import { WEEK_START_DAY, SCHEDULAR_VIEWS } from './App.helper';
 import './App.css'
 
 const App = ({ ...props }) => {
     const [startDate, setStartDate] = useState('12/13/2022');
     const [endDate, setEndDate] = useState('12/28/2022');
-    const [datePickerMode, setDatePickerMode] = useState(0);
+    const [datePickerMode, setDatePickerMode] = useState(SCHEDULAR_VIEWS.DAY);
     const [language, setLanguage] = useState('en');
+    const weekStartDay = WEEK_START_DAY.SATURDAY;
 
     /**
      * selectedViewIndex: => Day view: 0 , Week view: 1  
@@ -405,13 +407,6 @@ const App = ({ ...props }) => {
         },
     ];
 
-    const isSameDay = (d1, d2) =>
-        d1.getDate() === d2.getDate() &&
-        d1.getMonth() === d2.getMonth() &&
-        d1.getFullYear() === d2.getFullYear();
-    const isToday = date => isSameDay(date, new Date());
-    const isTodaySelected = isToday(new Date(startDate), new Date());
-
     return (
         <div style={{ direction: language === 'en' ? 'ltr' : 'rtl' }}>
             <Filter 
@@ -427,19 +422,20 @@ const App = ({ ...props }) => {
                         setEndDate(val.endDate)
                     }
                 }}
-                weekStartDay="Saturday"
+                weekStartDay={weekStartDay}
             />
-            <Schedular    
+            <Schedular
+                startDate={startDate}
+                endDate={endDate}
                 language={language}  
                 emptyStateView={<p>This is empty state</p>}
                 isLoading={false}
-                isTodaySelected={isTodaySelected}
-                data={datePickerMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
+                data={datePickerMode === SCHEDULAR_VIEWS.DAY ? dataForDayViewSample : dataForWeekViewSample}
                 firstTimeSlotInViewTime="05:00:00"
                 LastTimeSlotInViewTime="13:00:00"
                 isOffDay={false}
                 selectedViewIndex={datePickerMode}
-                weekStartDay="Saturday"
+                weekStartDay={weekStartDay}
                 // extendDataSlot={}
                 // extendSlot={}
                 // extendDayColumnWrapper={}
