@@ -13,6 +13,13 @@ import {
   ExtendedToolTip,
 } from './Schedular.style';
 
+
+export const SCHEDULAR_VIEWS = {
+  DAY: 0,
+  WEEK: 1,
+};
+
+
 export const toIndiaDigits = number => {
   const id = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
   return number.replace(/[0-9]/g, w => id[+w]);

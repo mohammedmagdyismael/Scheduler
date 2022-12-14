@@ -5,17 +5,17 @@ import IconsStore from '../UIComponents/icon/IconsStore';
 import Icons from '../UIComponents/Icons';
 import {
   ColumnsContainer,
-  DayColumnWrapper,
+  ColumnHeaderWrapper,
   DayGridColumnsContainer,
   DayColumnTitle,
-  DayGridColumnsWrapper,
+  ColumnsGridWrapper,
   ColumnsWrapper,
   TableShift,
   HourSlotTimeValue,
   Slot,
-  WeekColumn,
-  DayColumnsContainer,
-  DayColumnHeaderContainer,
+  Column,
+  DataColumnsContainer,
+  ColumnHeaderContainer,
   DataSlot,
   DayColumnDescription,
   IconContainer,
@@ -115,12 +115,12 @@ const ViewDay = ({ ...props }) => {
   const renderColumnsHeaders = () => (
     <div style={{ display: 'flex', position: 'sticky', top: '0', zIndex: '2', background: '#fff' }}>
       {data.map(dayGrid => (
-        <DayColumnWrapper
+        <ColumnHeaderWrapper
           extendDayColumnWrapper={extendDayColumnWrapper}
           key={`column-${dayGrid.columnTitle}-${dayGrid.id}`}
         >
-          <WeekColumn>
-            <DayColumnHeaderContainer>
+          <Column>
+            <ColumnHeaderContainer>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <DayColumnTitle>{dayGrid.columnTitle}</DayColumnTitle>
                 {onClickHeaderAction && (
@@ -144,9 +144,9 @@ const ViewDay = ({ ...props }) => {
               {dayGrid.columnDescription && (
                 <DayColumnDescription>{dayGrid.columnDescription}</DayColumnDescription>
               )}
-            </DayColumnHeaderContainer>
-          </WeekColumn>
-        </DayColumnWrapper>
+            </ColumnHeaderContainer>
+          </Column>
+        </ColumnHeaderWrapper>
       ))}
     </div>
   );
@@ -160,7 +160,7 @@ const ViewDay = ({ ...props }) => {
       )}
       {isTodaySelected && <RedDot currentTimeRedLinePosition={currentTimeRedLinePosition} />}
       {data.map(dayGrid => (
-        <DayColumnWrapper key={`column-${dayGrid.columnTitle}`}>
+        <ColumnHeaderWrapper key={`column-${dayGrid.columnTitle}`}>
           <div style={{ width: '100%', height: '100%'}}>
             <div style={{ position: 'relative' }}>
               {/** Draw Empty Grid Column */}
@@ -214,7 +214,7 @@ const ViewDay = ({ ...props }) => {
               })}
             </div>
           </div>
-        </DayColumnWrapper>
+        </ColumnHeaderWrapper>
       ))}
     </div>
   );
@@ -237,11 +237,11 @@ const ViewDay = ({ ...props }) => {
           {/** Day Column */}
           <div style={{ width: '100%' }} id="view-week-columns">
             {renderColumnsHeaders()}
-            <DayColumnsContainer id="view-week-columns-container">
+            <DataColumnsContainer id="view-week-columns-container">
               <div style={{ display: 'flex', flexDirection: 'column', width: 'inhirit' }}>
                 <div>{renderColumnsData()}</div>
               </div>
-            </DayColumnsContainer>
+            </DataColumnsContainer>
           </div>
         </ColumnsWrapper>
       </ColumnsContainer>
@@ -251,7 +251,7 @@ const ViewDay = ({ ...props }) => {
 
   return (
     <DayGridColumnsContainer>
-      <DayGridColumnsWrapper>{renderDayGridColumns()}</DayGridColumnsWrapper>
+      <ColumnsGridWrapper>{renderDayGridColumns()}</ColumnsGridWrapper>
     </DayGridColumnsContainer>
   );
 };

@@ -259,9 +259,9 @@ const ViewWeek = ({ ...props }) => {
             ))}
           </ColumnsInnerContainer>
           {/** Day Column */}
-          <div style={{ width: '100%' }} id="view-columns">
+          <div style={{ width: '100%' }} id="schedular-Columns__loading">
             {renderColumnsHeaders()}
-            <RoomsColumnsContainer id="view-columns-container">
+            <RoomsColumnsContainer id="schedular-Columns__data__loading">
               <div style={{ display: 'flex', flexDirection: 'column', width: 'inhirit' }}>
                 <div>{renderColumnsData()}</div>
               </div>

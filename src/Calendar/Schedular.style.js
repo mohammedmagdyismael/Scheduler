@@ -69,7 +69,7 @@ export const SchedularViewsContainer = styled.div`
   }
 `;
 
-export const DayColumnWrapper = styled.div`
+export const ColumnHeaderWrapper = styled.div`
   display: flex;
   background: #fff;
   flex-direction: column;
@@ -79,7 +79,7 @@ export const DayColumnWrapper = styled.div`
   ${props => props.extendDayColumnWrapper || ''};
 `;
 
-export const DayColumnsContainer = styled.div`
+export const DataColumnsContainer = styled.div`
   // overflow-x: scroll;
   // width: min-content;
   display: grid;
@@ -94,12 +94,12 @@ export const DayColumnsContainer = styled.div`
   }
 `;
 
-export const WeekColumn = styled.div`
+export const Column = styled.div`
   width: 100%;
   height: 54px;
 `;
 
-export const DayColumnHeaderContainer = styled.div`
+export const ColumnHeaderContainer = styled.div`
   // padding: 8px 0px;
   display: flex;
   flex-direction: column;
@@ -112,7 +112,7 @@ export const ColumnsWrapper = styled.div`
   grid-template-columns: 65px 100%;
 `;
 
-export const DayGridColumnsWrapper = styled.div`
+export const ColumnsGridWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
