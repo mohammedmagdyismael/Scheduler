@@ -1,6 +1,6 @@
 {
-  "homepage": "http://mohammedmagdyismael.github.io/Calendar",
-  "name": "calendar",
+  "homepage": "http://mohammedmagdyismael.github.io/Scheduler",
+  "name": "scheduler",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
