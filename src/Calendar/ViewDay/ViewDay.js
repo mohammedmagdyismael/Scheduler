@@ -32,7 +32,7 @@ import {
   generateTimeSlots,
   renderDataSlot,
   renderDataSlotMini,
-} from './helper';
+} from '../helper';
 
 const ViewDay = ({ ...props }) => {
   const {

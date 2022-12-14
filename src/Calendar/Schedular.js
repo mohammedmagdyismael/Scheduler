@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import ShimmerEffect from './UIComponents/shimmerEffect/ShimmerEffect';
 import Rect from './UIComponents/shimmerEffect/Rect';
 import { NoAnimationBox } from './UIComponents/shimmerEffect/NoAnimationContainer';
-import { getSlotPositionInColumnGrid } from './ViewDay/helper';
+import { getSlotPositionInColumnGrid } from './helper';
 import {
   SchedularViewsContainer,
   DayColumnWrapper,

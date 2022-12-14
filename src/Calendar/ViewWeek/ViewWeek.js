@@ -23,7 +23,7 @@ import {
   ColumnsInnerContainer,
   MoreLabelContainer,
 } from '../Schedular.style';
-import { getLocalizedDaysSlots, renderDataSlotMini } from './helper';
+import { getLocalizedDaysSlots, renderDataSlotMiniWeek } from '../helper';
 
 const ViewWeek = ({ ...props }) => {
   const {
@@ -220,7 +220,7 @@ const ViewWeek = ({ ...props }) => {
                               if (onClickDataSlot) onClickDataSlot(slotObj);
                             }}
                           >
-                            {renderDataSlotMini(slotObj, extendSlotTitle, extendSlotDesc)}
+                            {renderDataSlotMiniWeek(slotObj, extendSlotTitle, extendSlotDesc)}
                           </DataSlotWeek>,
                         );
                       });
