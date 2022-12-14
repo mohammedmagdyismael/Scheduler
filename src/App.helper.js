@@ -13,5 +13,10 @@ export const WEEK_START_DAY = {
     EN: 'en',
     AR: 'ar',
   };
+
+  const rtl = ['ar'];
+  export const isRTLLanguage = language => {
+    return rtl.includes(language) 
+  };
   
   

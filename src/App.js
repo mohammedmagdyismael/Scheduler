@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Schedular from './Scheduler';
-import Filter from './Calendar/UIComponents/Filter';
-import { WEEK_START_DAY, SCHEDULAR_VIEWS, LANGUAGES } from './App.helper';
+import Filter from './Scheduler/UIComponents/Filter';
+import { WEEK_START_DAY, SCHEDULAR_VIEWS, LANGUAGES, isRTLLanguage } from './App.helper';
 import './App.css'
 
 const App = ({ ...props }) => {
@@ -10,6 +10,7 @@ const App = ({ ...props }) => {
     const [datePickerMode, setDatePickerMode] = useState(SCHEDULAR_VIEWS.DAY);
     const [language, setLanguage] = useState(LANGUAGES.EN);
     const weekStartDay = WEEK_START_DAY.SATURDAY;
+    const isRTL = isRTLLanguage(language);
 
     /**
      * selectedViewIndex: => Day view: 0 , Week view: 1  
@@ -237,178 +238,10 @@ const App = ({ ...props }) => {
                 }  
             ]
         },
-        {
-            id: 0,
-            columnTitle: 'Column Name 2',
-            columnDescription: 'Column Description',
-            columnSlots: [
-                {
-                    isDisabled: true,
-                    dayOfWeek: 'Tuesday',
-                    daySlots: [],
-                },
-                {
-                    isDisabled: false,
-                    dayOfWeek: 'Tuesday',
-                    daySlots: [
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                    ],
-                },
-                {
-                    isDisabled: false,
-                    dayOfWeek: 'Friday',
-                    daySlots: [
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                        {
-                            id: 0,
-                            title: 'Details title',
-                            titleIcon: undefined,
-                            descA: 'Details Description A',
-                            descAIcon: 'specialty',
-                            descB: 'Details Description B',
-                            descBIcon: 'time',
-                            from: "2020-01-01T08:00:00",
-                            to: "2020-01-01T09:30:00",
-                            isDimmed: false,
-                        },
-                    ],
-                }  
-            ]
-        },
     ];
 
     return (
-        <div style={{ direction: language === 'en' ? 'ltr' : 'rtl' }}>
+        <div style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
             <Filter 
                 setLanguage={setLanguage}
                 startDate={startDate}
@@ -453,8 +286,7 @@ const App = ({ ...props }) => {
                 }} */
                     /* onHScrollEnds={() => {
                     // fire action here
-                }} */
-                {...props} 
+                }} */ 
             />   
          </div>
                 

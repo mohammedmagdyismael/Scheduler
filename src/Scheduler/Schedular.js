@@ -1,10 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { SCHEDULAR_VIEWS, getScrollPositionForDayStartTime } from './helper';
 import { SchedularViewsContainer } from './Schedular.style';
 import ViewDay from './ViewDay';
 import ViewWeek from './ViewWeek';
 import ViewLoading from './ViewLoading';
+import { translation } from './localization/translation';
 
 const Schedular = ({ ...props }) => {
   const {
@@ -14,7 +15,9 @@ const Schedular = ({ ...props }) => {
     emptyStateView,
     selectedViewIndex,
     startDate,
+    language,
   } = props;
+  const localization = useMemo(() => translation[language], [language]);
 
   const isSameDay = (d1, d2) =>
         d1.getDate() === d2.getDate() &&
@@ -53,9 +56,9 @@ const Schedular = ({ ...props }) => {
       }
       switch (selectedViewIndex) {
         case SCHEDULAR_VIEWS.DAY:
-          return <ViewDay {...props} isTodaySelected={isTodaySelected} />;
+          return <ViewDay {...props} isTodaySelected={isTodaySelected} localization={localization} />;
         case SCHEDULAR_VIEWS.WEEK:
-          return <ViewWeek {...props} />;
+          return <ViewWeek {...props} localization={localization} />;
         default:
           break;
       }

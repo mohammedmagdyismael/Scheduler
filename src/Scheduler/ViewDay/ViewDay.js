@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { /* useEffect,  */ useState } from 'react';
+import React, { /* useEffect,  */ useMemo, useState } from 'react';
 import Icon from '../UIComponents/icon/Icon';
 import IconsStore from '../UIComponents/icon/IconsStore';
 import Icons from '../UIComponents/Icons';
@@ -53,13 +53,13 @@ const ViewDay = ({ ...props }) => {
     isOffDay,
   } = props;
 
+  const TimeSlots24Format = useMemo(() => generateTimeSlots(), []);
   const isDisabledSlotShift = time => {
     const current = Number(`${time.split(':')[0]}${time.split(':')[1]}`);
     const startTime = Number(`${firstTimeSlotInViewTime.split(':')[0]}${firstTimeSlotInViewTime.split(':')[1]}`);
     const endTime = Number(`${LastTimeSlotInViewTime.split(':')[0]}${LastTimeSlotInViewTime.split(':')[1]}`);
     return current < startTime || endTime <= current || isOffDay;
   };
-
   const [currentTimeRedLinePosition, setCurrentTimeRedLinePosition] = useState(
     getSlotPositionInColumnGrid(new Date()),
   );
@@ -109,7 +109,6 @@ const ViewDay = ({ ...props }) => {
     };
   }, []); */
 
-  console.log(data)
   const renderColumnsHeaders = () => (
     <div style={{ display: 'flex', position: 'sticky', top: '0', zIndex: '2', background: '#fff' }}>
       {data.map(dayGrid => (
@@ -148,8 +147,6 @@ const ViewDay = ({ ...props }) => {
       ))}
     </div>
   );
-
-  const TimeSlots24Format = generateTimeSlots();
 
   const renderColumnsData = () => (
     <div style={{ display: 'flex', position: 'relative' }}>

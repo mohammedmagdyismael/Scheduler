@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from 'styled-components';
-import theme from './Calendar/UIComponents/base/Theme';
+import theme from './Scheduler/UIComponents/base/Theme';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
