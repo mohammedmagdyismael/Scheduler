@@ -13,6 +13,8 @@ import {
   ExtendedToolTip,
 } from './Schedular.style';
 
+export const NUM_SHIFTS_TO_SHOW = 3;
+
 
 export const SCHEDULAR_VIEWS = {
   DAY: 0,

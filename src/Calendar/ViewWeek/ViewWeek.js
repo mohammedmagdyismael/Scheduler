@@ -23,7 +23,7 @@ import {
   ColumnsInnerContainer,
   MoreLabelContainer,
 } from '../Schedular.style';
-import { getLocalizedDaysSlots, renderDataSlotMiniWeek } from '../helper';
+import { getLocalizedDaysSlots, renderDataSlotMiniWeek,NUM_SHIFTS_TO_SHOW } from '../helper';
 
 const ViewWeek = ({ ...props }) => {
   const {
@@ -110,7 +110,6 @@ const ViewWeek = ({ ...props }) => {
     </div>
   );
 
-  const NUM_SHIFTS_TO_SHOW = 3;
   const expandDay = dayName => {
     const temp = [...expandingDayStatusList];
     temp.forEach((day, index) => {
