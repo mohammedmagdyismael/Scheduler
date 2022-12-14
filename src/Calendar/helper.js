@@ -411,6 +411,15 @@ export const getSlotPositionInColumnGrid = from => {
   return Math.floor((currentTimeIndexInMinutes * dayInPixels) / DAY_IN_SECONDS);
 };
 
+export const getScrollPositionForDayStartTime = from => {
+  const dayInPixels = 58 * hoursSlotsList.length;
+  const DAY_IN_SECONDS = 60 * 60 * 24;
+  const hour = Number(`${from.split(':')[0]}`);
+  const minutes = Number(`${from.split(':')[1]}`);
+  const currentTimeIndexInMinutes = (60 * hour + minutes) * 60;
+  return Math.floor((currentTimeIndexInMinutes * dayInPixels) / DAY_IN_SECONDS);
+};
+
 export const getSlotLengthInPixels = (from, to) => {
   const fixesFromDateISOFormat = FixIsoFormat(from);
   const fixesToDateISOFormat = FixIsoFormat(to);

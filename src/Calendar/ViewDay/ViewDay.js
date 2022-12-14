@@ -54,11 +54,9 @@ const ViewDay = ({ ...props }) => {
   } = props;
 
   const isDisabledSlotShift = time => {
-    const startingInterval = firstTimeSlotInViewTime.split('T')[1];
-    const endingInterval = LastTimeSlotInViewTime.split('T')[1];
     const current = Number(`${time.split(':')[0]}${time.split(':')[1]}`);
-    const startTime = Number(`${startingInterval.split(':')[0]}${startingInterval.split(':')[1]}`);
-    const endTime = Number(`${endingInterval.split(':')[0]}${endingInterval.split(':')[1]}`);
+    const startTime = Number(`${firstTimeSlotInViewTime.split(':')[0]}${firstTimeSlotInViewTime.split(':')[1]}`);
+    const endTime = Number(`${LastTimeSlotInViewTime.split(':')[0]}${LastTimeSlotInViewTime.split(':')[1]}`);
     return current < startTime || endTime <= current || isOffDay;
   };
 

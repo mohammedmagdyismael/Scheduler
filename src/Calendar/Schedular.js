@@ -1,26 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
-import ShimmerEffect from './UIComponents/shimmerEffect/ShimmerEffect';
-import Rect from './UIComponents/shimmerEffect/Rect';
-import { NoAnimationBox } from './UIComponents/shimmerEffect/NoAnimationContainer';
-import { getSlotPositionInColumnGrid, SCHEDULAR_VIEWS } from './helper';
-import {
-  SchedularViewsContainer,
-  ColumnHeaderWrapper,
-  DataColumnsContainer,
-  Column,
-  ColumnHeaderContainer,
-  ColumnsWrapper,
-  ColumnsGridWrapper,
-  TableShift,
-  ColumnsContainer,
-  ColumnsInnerContainer,
-  SlotLoading,
-} from './Schedular.style';
+import { SCHEDULAR_VIEWS, getScrollPositionForDayStartTime } from './helper';
+import { SchedularViewsContainer } from './Schedular.style';
 import ViewDay from './ViewDay';
 import ViewWeek from './ViewWeek';
 import ViewLoading from './ViewLoading';
-
 
 const Schedular = ({ ...props }) => {
   const {
@@ -29,9 +13,6 @@ const Schedular = ({ ...props }) => {
     firstTimeSlotInViewTime,
     emptyStateView,
     selectedViewIndex,
-    extendDayColumnWrapper,
-    language,
-    extendSlot,
   } = props;
 
   useEffect(() => {
@@ -42,7 +23,7 @@ const Schedular = ({ ...props }) => {
           if (firstTimeSlotInViewTime) {
             schedularViewsContainerElement.scrollTo({
               top: firstTimeSlotInViewTime
-                ? getSlotPositionInColumnGrid(firstTimeSlotInViewTime)
+                ? getScrollPositionForDayStartTime(firstTimeSlotInViewTime)
                 : 0,
               behavior: 'smooth',
             });
@@ -62,7 +43,14 @@ const Schedular = ({ ...props }) => {
       if (!(data && data.length) && emptyStateView) {
         return emptyStateView;
       }
-      return selectedViewIndex === SCHEDULAR_VIEWS.DAY ? <ViewDay {...props} /> : <ViewWeek {...props} />;
+      switch (selectedViewIndex) {
+        case SCHEDULAR_VIEWS.DAY:
+          return <ViewDay {...props} />;
+        case SCHEDULAR_VIEWS.WEEK:
+          return <ViewWeek {...props} />;
+        default:
+          break;
+      }
     }
     return <ViewLoading />;
   };

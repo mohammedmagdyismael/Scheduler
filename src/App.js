@@ -431,12 +431,12 @@ const App = ({ ...props }) => {
             />
             <Schedular    
                 language={language}  
-                emptyStateView={<p>Test</p>}
+                emptyStateView={<p>This is empty state</p>}
                 isLoading={false}
                 isTodaySelected={isTodaySelected}
                 data={datePickerMode === 0 ? dataForDayViewSample : dataForWeekViewSample}
-                firstTimeSlotInViewTime="2020-01-01T05:00:00"
-                LastTimeSlotInViewTime="2020-01-01T13:00:00"
+                firstTimeSlotInViewTime="05:00:00"
+                LastTimeSlotInViewTime="13:00:00"
                 isOffDay={false}
                 selectedViewIndex={datePickerMode}
                 weekStartDay="Saturday"
