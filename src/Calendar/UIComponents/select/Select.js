@@ -18,7 +18,6 @@ import Separator from '../separator/Separator';
 import { itemsAdapter, generateListFromItems, isListsEqual, getErrorMessage } from './SelectUtils';
 import withDisplayName from '../WithDisplayName';
 import { COLORS } from '../base/Colors';
-import Colors from '../shared/Colors';
 import './Select.css';
 import { FONT_WEIGHTS } from '../base/Typography';
 
@@ -968,7 +967,7 @@ class Select extends Component {
             className="custom-option--icon"
             icon={this.iconsStore.getIcon('plus')}
             width={9}
-            color={Colors.vezeetaBlue}
+            color={"#0070cd"}
           />
           <Text ml={2} className="custom-option--text">{`${customChoiceMessage}: ${value}`}</Text>
         </div>
@@ -1099,11 +1098,11 @@ class Select extends Component {
 
     // Changing icon color depending on component state
     if (isDanger) {
-      iconColor = Colors.vezeetaRed;
+      iconColor = "#ef0f0f";
     } else if (isOpen) {
-      iconColor = Colors.vezeetaBlue;
+      iconColor = "#0070cd";
     } else {
-      iconColor = Colors.defaultGrey;
+      iconColor = "#58595b";
     }
 
     if (icon) {
