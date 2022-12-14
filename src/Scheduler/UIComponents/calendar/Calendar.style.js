@@ -48,19 +48,19 @@ export const YearNameContainer = styled(MonthNameContainer)`
 `;
 
 export const Container = styled.div`
-    width: 285px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    display: block;
     height: 310px;
-    padding: 20px 18px; 
-    position: absolute;
-    -webkit-filter: drop-shadow(0px 4px 16px rgba(0,0,0,0.16));
-    filter: drop-shadow(0px 4px 16px rgba(0,0,0,0.16));
-    background-color: #fff;
-    z-index: 2;
-    min-height: 270px;
-    overflow: auto;
-    box-shadow: 0px 4px 16px rgb(0 0 0 / 16%);
+    margin: 0 auto;
+    max-width: 285px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    filter: drop-shadow(0px 4px 16px rgba(0, 0, 0, 0.16));
     border-radius: 8px;
-    font-family: sans-serif;
+    background-color: #fff;
+    padding: 20px 18px;
 `;
 export const MonthRow = styled.div`
     display: flex;
