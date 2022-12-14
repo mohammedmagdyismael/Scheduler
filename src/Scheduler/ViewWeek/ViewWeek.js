@@ -23,7 +23,7 @@ import {
   ColumnsInnerContainer,
   MoreLabelContainer,
 } from '../Schedular.style';
-import { getLocalizedDaysSlots, renderDataSlotMiniWeek,NUM_SHIFTS_TO_SHOW } from '../helper';
+import { getLocalizedDaysSlots, renderDataSlotMiniWeek,NUM_SHIFTS_TO_SHOW, getDaysSlots, isRTLLanguage } from '../helper';
 
 const ViewWeek = ({ ...props }) => {
   const {
@@ -38,6 +38,7 @@ const ViewWeek = ({ ...props }) => {
     extendSlotTitle,
     extendSlotDesc,
     weekStartDay,
+    localization,
   } = props;
 
   const [expandingDayStatusList, setExpandingDayStatusList] = useState([
@@ -131,9 +132,7 @@ const ViewWeek = ({ ...props }) => {
     ) {
       return (
         <MoreLabelContainer onClick={() => expandDay(dayName)}>
-          <p style={{ margin: '0px' }}>{`${dayDetails.daySlots.length - NUM_SHIFTS_TO_SHOW} ${
-            language === 'en' ? 'more' : 'أكثر'
-          }`}</p>
+          <p style={{ margin: '0px' }}>{`${dayDetails.daySlots.length - NUM_SHIFTS_TO_SHOW} ${localization.more}`}</p>
           <div style={{ margin: '2px 6px 0px' }}>
             <Icon
               className="icon"
@@ -185,7 +184,7 @@ const ViewWeek = ({ ...props }) => {
           <RoomColumn>
             <div style={{ position: 'relative' }}>
               {/** Draw Empty Grid Column */}
-              {getLocalizedDaysSlots('en', weekStartDay).map((slot, index) => (
+              {getDaysSlots(weekStartDay).map((slot, index) => (
                 <SlotWeek
                   extendSlot={extendSlot}
                   id={`${slot}-${index}`}
@@ -193,7 +192,7 @@ const ViewWeek = ({ ...props }) => {
                   isClickable={onClickSlot}
                   onClick={() => {
                     if (onClickSlot) {
-                      onClickSlot(getLocalizedDaysSlots('en', weekStartDay)[index]);
+                      onClickSlot(getDaysSlots(weekStartDay)[index]);
                     }
                   }}
                   slotHeight={getSlotHeight(data, slot)}
@@ -246,11 +245,11 @@ const ViewWeek = ({ ...props }) => {
       <ColumnsContainer>
         <ColumnsWrapper>
           {/** Time Line */}
-          <ColumnsInnerContainer isRTL={language !== 'en'}>
+          <ColumnsInnerContainer isRTL={isRTLLanguage(language)}>
             <TableShiftWeek />
-            {getLocalizedDaysSlots(language, weekStartDay).map((slotValue, index) => (
+            {getLocalizedDaysSlots(localization, weekStartDay).map((slotValue, index) => (
               <DaySlotName
-                slotHeight={getSlotHeight(data, getLocalizedDaysSlots('en', weekStartDay)[index]) + 2}
+                slotHeight={getSlotHeight(data, getDaysSlots(weekStartDay)[index]) + 2}
                 key={slotValue}
               >
                 {slotValue}

@@ -128,7 +128,7 @@ class Calendar extends Component {
 
     this.setState({
       currentMonthNum: +month,
-      currentMonthName: this.props.isArabic
+      currentMonthName: this.props.isRTL
         ? getMonthArabicNames()[month - 1]
         : getMonthNames()[month - 1],
       currentYear: +year,
@@ -151,7 +151,7 @@ class Calendar extends Component {
     }
     this.setState({
       currentMonthNum: +month,
-      currentMonthName: this.props.isArabic
+      currentMonthName: this.props.isRTL
         ? getMonthArabicNames()[month - 1]
         : getMonthNames()[month - 1],
       currentYear: +year,
@@ -181,9 +181,9 @@ class Calendar extends Component {
           }
         } else if (!compareDate(minDate, id)) {
           this.switchErrorPopUp(
-            this.props.isArabic
+            this.props.isRTL
               ? this.state.errMessageLessThanMinDateArabic.concat(
-                transformYYYYMMDDtoMMDDYYYY(this.state.minDate, this.props.isArabic), // eslint-disable-line
+                transformYYYYMMDDtoMMDDYYYY(this.state.minDate, this.props.isRTL), // eslint-disable-line
               ) // eslint-disable-line
               : this.state.errMassageLessThenMinDate.concat(
                 transformYYYYMMDDtoMMDDYYYY(this.state.minDate), // eslint-disable-line
@@ -191,9 +191,9 @@ class Calendar extends Component {
           );
         } else if (!compareDate(id, maxDate)) {
           this.switchErrorPopUp(
-            this.props.isArabic
+            this.props.isRTL
               ? this.state.errMessageMorethanMaxDateArabic.concat(
-                  transformYYYYMMDDtoMMDDYYYY(this.state.maxDate, this.props.isArabic), // eslint-disable-line
+                  transformYYYYMMDDtoMMDDYYYY(this.state.maxDate, this.props.isRTL), // eslint-disable-line
                 ) // eslint-disable-line
               : this.state.errMassageMoreThenMxaDate.concat(
                   transformYYYYMMDDtoMMDDYYYY(this.state.maxDate), // eslint-disable-line
@@ -324,7 +324,7 @@ class Calendar extends Component {
     const maxDateDefault = '12/31/2099';
     const now = new Date();
     const err = [];
-    const monthNames = this.props.isArabic ? getMonthArabicNames() : getMonthNames();
+    const monthNames = this.props.isRTL ? getMonthArabicNames() : getMonthNames();
     const monthNum = now.getMonth();
     const monthName = monthNames[now.getMonth()];
     const year = now.getFullYear();
@@ -448,10 +448,10 @@ class Calendar extends Component {
     for (let counter = currentYear; counter >= startYear; counter -= 1) {
       const year = {
         data: {
-          placeholder: this.props.isArabic ? toIndiaDigits(`${counter}`) : `${counter}`,
+          placeholder: this.props.isRTL ? toIndiaDigits(`${counter}`) : `${counter}`,
           value: counter,
         },
-        component: <Text>{this.props.isArabic ? toIndiaDigits(`${counter}`) : `${counter}`}</Text>,
+        component: <Text>{this.props.isRTL ? toIndiaDigits(`${counter}`) : `${counter}`}</Text>,
       };
       yearsOptions.push(year);
     }
@@ -464,7 +464,7 @@ class Calendar extends Component {
         years.push(
             <YearNameContainer isSelected={this.state.currentYear === i} onClick={() => this.onYearInYearsViewClick(i)}>
                     <YearNameWrapper>
-                        <p style={{ margin: '0px' }}>{this.props.isArabic ? toIndiaDigits(`${i}`) : i}</p>
+                        <p style={{ margin: '0px' }}>{this.props.isRTL ? toIndiaDigits(`${i}`) : i}</p>
                     </YearNameWrapper>
             </YearNameContainer>
         )
@@ -500,7 +500,7 @@ class Calendar extends Component {
       weekDaysArabic,
       viewIndex,
     } = this.state;
-    const { type, isArabic } = this.props;
+    const { type, isRTL } = this.props;
     const prevMonthAr = [];
     const thisMonthAr = [];
     const nextMonthAr = [];
@@ -539,7 +539,7 @@ class Calendar extends Component {
             <div
               className={ClassNames('calendar-arrow-v2', {
                 'calendar-arrow-v2--disable': this.state.disablePreviousMonthButton,
-                'calendar-arrow-v2--rotated': isArabic,
+                'calendar-arrow-v2--rotated': isRTL,
               })}
               onClick={this.onClickLeftArrowCalendar}
               onKeyDown={() => {}}
@@ -552,12 +552,12 @@ class Calendar extends Component {
             </div>
             <div className="calendar-header-title-v2">
               <div className="calendar-header-title-month-v2">{currentMonthName}</div>
-              <div className="calendar-header-title-year-v2" onClick={() => this.setState({ viewIndex: CALENDAR_VIEWS.YEARS })}>{this.props.isArabic ? toIndiaDigits(`${currentYear}`) : currentYear}</div>
+              <div className="calendar-header-title-year-v2" onClick={() => this.setState({ viewIndex: CALENDAR_VIEWS.YEARS })}>{this.props.isRTL ? toIndiaDigits(`${currentYear}`) : currentYear}</div>
             </div>
             <div
               className={ClassNames('calendar-arrow-v2', {
                 'calendar-arrow-v2--disable': this.state.disableNextMonthButton,
-                'calendar-arrow-v2--rotated': isArabic,
+                'calendar-arrow-v2--rotated': isRTL,
               })}
               onClick={this.onClickRightArrowCalendar}
               onKeyDown={() => {}}
@@ -580,7 +580,7 @@ class Calendar extends Component {
               {errPopUp}
             </div>
             <div className="calendar-week-days-v2">
-              {isArabic ? (
+              {isRTL ? (
                 <div className="week-names-v2">
                   {weekDaysArabic.map(day => (
                     <div key={day} className="calendar-weekday-v2 calendar-weekday-arabic-v2">
@@ -598,7 +598,7 @@ class Calendar extends Component {
                 </div>
               )}
             </div>
-            {isArabic ? (
+            {isRTL ? (
               <div className="calendar-days-arabic-v2">
                 {prevMonthAr.map(val => {
                   const arr = val.split('-');
@@ -610,7 +610,7 @@ class Calendar extends Component {
                     date,
                     startDate,
                     endDate,
-                    isArabic,
+                    isRTL,
                   });
                   return (
                     <div key={val} id={this.props.id.concat(val)} className={classDiv}>
@@ -628,7 +628,7 @@ class Calendar extends Component {
                     date,
                     startDate,
                     endDate,
-                    isArabic,
+                    isRTL,
                   });
                   return (
                     <div key={val} id={this.props.id.concat(val)} className={classDiv}>
@@ -646,7 +646,7 @@ class Calendar extends Component {
                     date,
                     startDate,
                     endDate,
-                    isArabic,
+                    isRTL,
                   });
                   return (
                     <div key={val} id={this.props.id.concat(val)} className={classDiv}>
@@ -729,7 +729,7 @@ Calendar.propTypes = {
   dateFormat: PropTypes.oneOf(['yyyy-mm-dd', 'mm/dd/yyyy', '']),
   type: PropTypes.oneOf(['range', 'single']),
   id: PropTypes.string,
-  isArabic: PropTypes.bool,
+  isRTL: PropTypes.bool,
 };
 
 Calendar.defaultProps = {
@@ -741,7 +741,7 @@ Calendar.defaultProps = {
   dateFormat: '',
   type: 'range',
   id: '', // add string id to calendar-cell-id
-  isArabic: false,
+  isRTL: false,
 };
 
 export default withDisplayName(Calendar, 'Calendar');

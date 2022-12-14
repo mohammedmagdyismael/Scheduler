@@ -128,20 +128,20 @@ export const getDropDownList = list => {
   return [];
 };
 
-export const datePickerOptions = language => [
+export const datePickerOptions = localization => [
   {
-    name: language === 'en' ? 'Day' : 'يوم',
+    name: localization.day,
     key: 0,
   },
   {
-    name: language === 'en' ? 'Week' : 'أسبوع',
+    name: localization.week,
     key: 1,
   },
 ];
 
-export const getDatePickerDropDownList = language => {
+export const getDatePickerDropDownList = localization => {
   const dropdownList = [];
-  datePickerOptions(language).forEach(item => {
+  datePickerOptions(localization).forEach(item => {
     dropdownList.push({
       fieldValue: item.name,
       value: item.key,
@@ -163,6 +163,10 @@ export const languages = [
   {
     name: 'عربي',
     key: 'ar',
+  },
+  {
+    name: 'Española',
+    key: 'es',
   },
 ];
 

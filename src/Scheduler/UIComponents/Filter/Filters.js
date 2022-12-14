@@ -26,6 +26,7 @@ const Filters = ({ ...props }) => {
     setDatePickerMode,
     weekStartDay,
     setLanguage,
+    localization,
   } = props;
 
   return (
@@ -40,6 +41,7 @@ const Filters = ({ ...props }) => {
                 onChange={onChangeDate}
                 datePickerMode={datePickerMode}
                 weekStartDay={weekStartDay}
+                localization={localization}
               />
             </FilterSectionContainer>
           </div>

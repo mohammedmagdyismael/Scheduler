@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Schedular from './Scheduler';
 import Filter from './Scheduler/UIComponents/Filter';
-import { WEEK_START_DAY, SCHEDULAR_VIEWS, LANGUAGES, isRTLLanguage } from './App.helper';
-import './App.css'
+import { translation } from './localization/translation';
 
-const App = ({ ...props }) => {
+import { WEEK_START_DAY, SCHEDULAR_VIEWS, LANGUAGES, isRTLLanguage } from './App.helper';
+import './App.css';
+
+const App = () => {
     const [startDate, setStartDate] = useState('12/13/2022');
     const [endDate, setEndDate] = useState('12/28/2022');
     const [datePickerMode, setDatePickerMode] = useState(SCHEDULAR_VIEWS.DAY);
     const [language, setLanguage] = useState(LANGUAGES.EN);
     const weekStartDay = WEEK_START_DAY.SATURDAY;
     const isRTL = isRTLLanguage(language);
+    const localization = useMemo(() => translation[language], [language]);
+
 
     /**
      * selectedViewIndex: => Day view: 0 , Week view: 1  
@@ -243,6 +247,7 @@ const App = ({ ...props }) => {
     return (
         <div style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
             <Filter 
+                localization={localization}
                 setLanguage={setLanguage}
                 startDate={startDate}
                 endDate={endDate}
@@ -258,6 +263,7 @@ const App = ({ ...props }) => {
                 weekStartDay={weekStartDay}
             />
             <Schedular
+                localization={localization}
                 startDate={startDate}
                 endDate={endDate}
                 language={language}  
@@ -269,25 +275,21 @@ const App = ({ ...props }) => {
                 isOffDay={false}
                 selectedViewIndex={datePickerMode}
                 weekStartDay={weekStartDay}
+                onClickDataSlot={val => {
+                    alert(`Data Slot is Clicked!`);
+                }}
+                onClickSlot={val => {
+                    alert(`Empty Slot is Clicked!`);
+                }}
+                onClickHeaderAction={() => {
+                    alert(`Column Header is Clicked!`);
+                }}
                 // extendDataSlot={}
                 // extendSlot={}
                 // extendDayColumnWrapper={}
                 // extendSlotTitle={}
                 // extendSlotDesc={}
-                onClickDataSlot={val => {
-                if (val) console.log({ accountKey: val.id });
-                }}
-                /* onClickSlot={() => {
-                // fire action here
-                console.log('Slot Clicked!');
-                }} */
-                    /* onClickHeaderAction={() => {
-                    // fire action here
-                }} */
-                    /* onHScrollEnds={() => {
-                    // fire action here
-                }} */ 
-            />   
+            />
          </div>
                 
     )

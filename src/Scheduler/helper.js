@@ -13,44 +13,28 @@ import {
   ExtendedToolTip,
 } from './Schedular.style';
 
+const rtl = ['ar'];
+
 export const NUM_SHIFTS_TO_SHOW = 3;
 
+export const NUMBER_MONTHS = 12;
 
 export const SCHEDULAR_VIEWS = {
   DAY: 0,
   WEEK: 1,
 };
 
+export const VIEWS = {
+  YEAR: 0,
+  MONTH: 1,
+  WEEK: 2,
+  DAY: 3,
+};
 
 export const toIndiaDigits = number => {
   const id = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
   return number.replace(/[0-9]/g, w => id[+w]);
 };
-
-export const daysNamesAbbrev = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fri', 'Sa'];
-export const daysNames = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-];
-export const monthsNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
 
 const hoursSlotsList = [
   '12:00 am',
@@ -77,6 +61,33 @@ const hoursSlotsList = [
   '09:00 pm',
   '10:00 pm',
   '11:00 pm',
+];
+
+const hoursSlotsListLocal = localization => [
+  `12:00 ${localization.am}`,
+  `01:00 ${localization.am}`,
+  `02:00 ${localization.am}`,
+  `03:00 ${localization.am}`,
+  `04:00 ${localization.am}`,
+  `05:00 ${localization.am}`,
+  `06:00 ${localization.am}`,
+  `07:00 ${localization.am}`,
+  `08:00 ${localization.am}`,
+  `09:00 ${localization.am}`,
+  `10:00 ${localization.am}`,
+  `11:00 ${localization.am}`,
+  `12:00 ${localization.pm}`,
+  `01:00 ${localization.pm}`,
+  `02:00 ${localization.pm}`,
+  `03:00 ${localization.pm}`,
+  `04:00 ${localization.pm}`,
+  `05:00 ${localization.pm}`,
+  `06:00 ${localization.pm}`,
+  `07:00 ${localization.pm}`,
+  `08:00 ${localization.pm}`,
+  `09:00 ${localization.pm}`,
+  `10:00 ${localization.pm}`,
+  `11:00 ${localization.pm}`,
 ];
 
 export const generateTimeSlots = () => {
@@ -360,32 +371,25 @@ export const renderDataSlotMiniWeek = (columnSlot, extendSlotTitle, extendSlotDe
   );
 };
 
-export const getLocalizedHoursSlots = language => {
-  if (language) {
-    if (language === 'en') {
-      return hoursSlotsList;
+export const isRTLLanguage = language => {
+    return rtl.includes(language) 
+  };
+  
+
+export const getHoursSlots = (localization, language) => {
+  if (localization) {
+    const localizedTimeSlots = hoursSlotsListLocal(localization);
+    if (isRTLLanguage(language)) {
+      return localizedTimeSlots.map(slot => toIndiaDigits(String(slot)));
     }
-    return hoursSlotsList.map(slot =>
-      toIndiaDigits(
-        String(slot)
-          .replace('am', 'ص')
-          .replace('pm', 'م'),
-      ),
-    );
-  }
-};
-
-export const NUMBER_MONTHS = 12;
-
-export const VIEWS = {
-  YEAR: 0,
-  MONTH: 1,
-  WEEK: 2,
-  DAY: 3,
+    return hoursSlotsListLocal(localization);
+  } 
+  return hoursSlotsList;
 };
 
 export const FixIsoFormat = dateTimeString => {
-  if (dateTimeString && isNaN(new Date(dateTimeString))) {
+  const isValidISOFormat = /[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}/.test(dateTimeString);
+  if (!isValidISOFormat) {
     const date = dateTimeString.split('T')[0];
     const year = date.split('-')[0];
     let month = date.split('-')[1];
@@ -433,13 +437,12 @@ export const getSlotLengthInPixels = (from, to) => {
 export const roundUpNearest10 = num => Math.ceil(num / 10) * 10;
 
 const daysListSat = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-const daysListSatAr = ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعه'];
-
-const daysListSun = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const daysListSunAr = ['الأحد', 'الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعه', 'السبت'];
-
 const daysListMon = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const daysListMonAr = ['الاثنين', 'الثلاثاء', 'الاربعاء', 'الخميس', 'الجمعه', 'السبت', 'الأحد'];
+const daysListSun = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+const daysListSatLocal = localization => [localization.saturday, localization.sunday, localization.monday, localization.tuesday, localization.wednesday, localization.thursday, localization.friday];
+const daysListSunLocal = localization => [localization.sunday, localization.monday, localization.tuesday, localization.wednesday, localization.thursday, localization.friday, localization.saturday];
+const daysListMonLocal = localization => [localization.monday, localization.tuesday, localization.wednesday, localization.thursday, localization.friday, localization.saturday, localization.sunday];
 
 export const WEEK_START_DAY = {
   SATURDAY: 'Saturday',
@@ -447,29 +450,30 @@ export const WEEK_START_DAY = {
   MONDAY: 'Monday',
 };
 
-export const getLocalizedDaysSlots = (language, weekStartDay) => {
-  if (language) {
-    if (language === 'en') {
+export const getDaysSlots = (weekStartDay) => {
+  switch (weekStartDay) {
+    case WEEK_START_DAY.MONDAY:
+      return daysListMon;
+    case WEEK_START_DAY.SATURDAY:
+      return daysListSat;
+    case WEEK_START_DAY.SUNDAY:
+      return daysListSun;
+    default:
+      break;
+  }
+};
+
+export const getLocalizedDaysSlots = (localization, weekStartDay) => {
+  if (localization) {
       switch (weekStartDay) {
         case WEEK_START_DAY.MONDAY:
-          return daysListMon;
+          return daysListMonLocal(localization);
         case WEEK_START_DAY.SATURDAY:
-          return daysListSat;
+          return daysListSatLocal(localization);
         case WEEK_START_DAY.SUNDAY:
-          return daysListSun;
+          return daysListSunLocal(localization);
         default:
           break;
       }
-    }
-    switch (weekStartDay) {
-      case WEEK_START_DAY.MONDAY:
-        return daysListMonAr;
-      case WEEK_START_DAY.SATURDAY:
-        return daysListSatAr;
-      case WEEK_START_DAY.SUNDAY:
-        return daysListSunAr;
-      default:
-        break;
-    }
   }
 };

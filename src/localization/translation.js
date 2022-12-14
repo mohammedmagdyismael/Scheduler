@@ -1,0 +1,51 @@
+/* eslint-disable import/prefer-default-export */
+export const translation = {
+  en: {
+    'sunday': "Sunday", 
+    'monday': "Monday", 
+    'tuesday': "Tuesday", 
+    'wednesday': "Wednesday", 
+    'thursday': "Thursday", 
+    'friday': "Friday", 
+    'saturday': "Saturday",
+    'am': "am",
+    'pm': "pm",
+    'day': "Day",
+    'week': "Week",
+    'today': "Today",
+    'thisWeek': "This week",
+    'more': "more"
+  },
+  ar: {
+    'sunday': "الأحد", 
+    'monday': "الاثنين", 
+    'tuesday': "الثلاثاء", 
+    'wednesday': "الاربعاء", 
+    'thursday': "الخميس", 
+    'friday': "الجمعه", 
+    'saturday': "السبت",
+    'am': "ص",
+    'pm': "م",
+    'day': "يوم",
+    'week': "أسبوع",
+    'today': "اليوم",
+    'thisWeek': "الأسبوع الحالى",
+    'more': "أكثر"
+  },
+  es: {
+    'sunday': "Domingo", 
+    'monday': "Lunes", 
+    'tuesday': "Martes", 
+    'wednesday': "Miércoles", 
+    'thursday': "Jueves", 
+    'friday': "Viernes", 
+    'saturday': "Sábado",
+    'am': "am",
+    'pm': "pm",
+    'day': "Día",
+    'week': "Semana",
+    'today': "Este Dia",
+    'thisWeek': "Esta semana",
+    'more': "más"
+  },
+};

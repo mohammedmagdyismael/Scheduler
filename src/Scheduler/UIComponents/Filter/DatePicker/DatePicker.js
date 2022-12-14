@@ -9,6 +9,7 @@ import IconsStore from '../../icon/IconsStore';
 import Icons from '../../Icons';
 import Calendar from '../../calendar/Calendar';
 import './dropdowns.css';
+import { isRTLLanguage } from '../../../helper';
 import {
   extendTodayButton,
   DatePickerWrapper,
@@ -33,7 +34,7 @@ const toIndiaDigits = number => {
 
 const DatePicker = ({ ...props }) => {
   const [isCalendarShown, toggleCalendarShown] = useState(false);
-  const { onChange, startDate, endDate, language, datePickerMode, weekStartDay } = props;
+  const { onChange, startDate, endDate, language, datePickerMode, weekStartDay, localization } = props;
 
   const setChangeForWeekStartAndLastDays = date => {
     let first;
@@ -88,6 +89,7 @@ const DatePicker = ({ ...props }) => {
       onChange({ startDate: convertIsoTOMMDDYYYY(first), endDate: convertIsoTOMMDDYYYY(last) });
     }
   };
+
   const setPrevday = () => {
     if (datePickerMode === DATE_PICKER_MODE.SINGLE_PICK) {
       const prevDay = new Date(startDate);
@@ -175,9 +177,9 @@ const DatePicker = ({ ...props }) => {
 
   let currentTimeBtn = '';
   if (datePickerMode === DATE_PICKER_MODE.SINGLE_PICK) {
-    currentTimeBtn = language === 'en' ? 'Today' : 'اليوم';
+    currentTimeBtn = localization.today;
   } else {
-    currentTimeBtn = language === 'en' ? 'This week' : 'الأسبوع الحالى';
+    currentTimeBtn = localization.thisWeek;
   }
 
   return (
@@ -213,7 +215,7 @@ const DatePicker = ({ ...props }) => {
             onClick={() => toggleCalendarShown(!isCalendarShown)}
             isCalendarShown={isCalendarShown}
           >
-            <DateText>{language === 'en' ? dateString() : toIndiaDigits(dateString())}</DateText>
+            <DateText>{!isRTLLanguage(language) ? dateString() : toIndiaDigits(dateString())}</DateText>
             <Icon icon={new IconsStore(Icons).getIcon('downcarret')} width={11} />
           </DateContainer>
           <ShowDesktop>
@@ -228,7 +230,8 @@ const DatePicker = ({ ...props }) => {
               date={PickerDateFormatter(startDate)}
               startDate={PickerDateFormatter(startDate)}
               endDate={PickerDateFormatter(endDate)}
-              isArabic={language !== 'en'}
+              isRTL={isRTLLanguage(language)}
+              language={language}
               onChange={onDatePickerSelect}
               weekStartDay={weekStartDay}
             />
@@ -245,7 +248,8 @@ const DatePicker = ({ ...props }) => {
               date={PickerDateFormatter(startDate)}
               startDate={PickerDateFormatter(startDate)}
               endDate={PickerDateFormatter(endDate)}
-              isArabic={language !== 'en'}
+              isRTL={isRTLLanguage(language)}
+              language={language}
               onChange={onDatePickerSelect}
               weekStartDay={weekStartDay}
             />

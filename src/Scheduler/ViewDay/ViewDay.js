@@ -25,13 +25,14 @@ import {
   HalfSlot,
 } from '../Schedular.style';
 import {
-  getLocalizedHoursSlots,
+  getHoursSlots,
   getSlotPositionInColumnGrid,
   getSlotLengthInPixels,
   // roundUpNearest10,
   generateTimeSlots,
   renderDataSlot,
   renderDataSlotMini,
+  isRTLLanguage,
 } from '../helper';
 
 const ViewDay = ({ ...props }) => {
@@ -51,6 +52,7 @@ const ViewDay = ({ ...props }) => {
     firstTimeSlotInViewTime,
     LastTimeSlotInViewTime,
     isOffDay,
+    localization,
   } = props;
 
   const TimeSlots24Format = useMemo(() => generateTimeSlots(), []);
@@ -63,51 +65,6 @@ const ViewDay = ({ ...props }) => {
   const [currentTimeRedLinePosition, setCurrentTimeRedLinePosition] = useState(
     getSlotPositionInColumnGrid(new Date()),
   );
-  /* const onScrollHorizontallyHandler = () => {
-    const myElementToCheckIfClicksAreInsideOf = document.querySelector(
-      '#view-week-columns-container',
-    );
-    const parentContainer = document.getElementById('view-week-columns');
-    if (
-      roundUpNearest10(
-        Number(
-          myElementToCheckIfClicksAreInsideOf.scrollWidth -
-            parentContainer.getBoundingClientRect().width,
-        ).toFixed(0),
-      ) === roundUpNearest10(Number(myElementToCheckIfClicksAreInsideOf.scrollLeft).toFixed(0))
-    ) {
-      if (onHScrollEnds) onHScrollEnds();
-    }
-  };
-
-  const addListener = () => {
-    const myElementToCheckIfClicksAreInsideOf = document.querySelector(
-      '#view-week-columns-container',
-    );
-    myElementToCheckIfClicksAreInsideOf.addEventListener(
-      'scroll',
-      onScrollHorizontallyHandler,
-      true,
-    );
-  };
-
-  const removeListener = () => {
-    const myElementToCheckIfClicksAreInsideOf = document.querySelector(
-      '#view-week-columns-container',
-    );
-    myElementToCheckIfClicksAreInsideOf.removeEventListener(
-      'scroll',
-      onScrollHorizontallyHandler,
-      true,
-    );
-  };
-
-  useEffect(() => {
-    addListener();
-    return () => {
-      removeListener();
-    };
-  }, []); */
 
   const renderColumnsHeaders = () => (
     <div style={{ display: 'flex', position: 'sticky', top: '0', zIndex: '2', background: '#fff' }}>
@@ -167,7 +124,7 @@ const ViewDay = ({ ...props }) => {
                   isClickable={onClickSlot}
                   onClick={() => {
                     if (onClickSlot) {
-                      onClickSlot(getLocalizedHoursSlots('en')[index]);
+                      onClickSlot(getHoursSlots()[index]);
                     }
                   }}
                 >
@@ -223,9 +180,9 @@ const ViewDay = ({ ...props }) => {
       <ColumnsContainer>
         <ColumnsWrapper>
           {/** Time Line */}
-          <ColumnsInnerContainer isRTL={language !== 'en'}>
+          <ColumnsInnerContainer isRTL={isRTLLanguage(language)}>
             <TableShift />
-            {getLocalizedHoursSlots(language).map(slotValue => (
+            {getHoursSlots(localization, language).map(slotValue => (
               <HourSlotTimeValue key={slotValue}>{slotValue}</HourSlotTimeValue>
             ))}
           </ColumnsInnerContainer>

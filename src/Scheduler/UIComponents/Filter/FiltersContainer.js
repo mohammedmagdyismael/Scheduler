@@ -11,12 +11,13 @@ const FiltersContainer = ({ ...props }) => {
     language,
     setDatePickerMode,
     datePickerMode,
+    localization,
     // startDate,
     // endDate
   } = props;
 
 
-  const datePickerDropdownList = getDatePickerDropDownList(language);
+  const datePickerDropdownList = getDatePickerDropDownList(localization);
   const languagesList = getLanguagesList();
 
   return (

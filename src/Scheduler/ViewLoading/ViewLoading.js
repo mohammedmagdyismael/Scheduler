@@ -15,6 +15,7 @@ import {
   ColumnsInnerContainer,
   SlotLoading,
 } from '../Schedular.style';
+import { isRTLLanguage } from '../helper';
 
 const ViewLoading = ({ ...props }) => {
   const {
@@ -75,7 +76,7 @@ const ViewLoading = ({ ...props }) => {
       <ColumnsContainer>
         <ColumnsWrapper>
           {/** Empty Time Line for loading */}
-          <ColumnsInnerContainer isRTL={language !== 'en'}>
+          <ColumnsInnerContainer isRTL={isRTLLanguage(language)}>
             <TableShift />
           </ColumnsInnerContainer>
           {/** Empty Data Column */}

@@ -5,7 +5,6 @@ import { SchedularViewsContainer } from './Schedular.style';
 import ViewDay from './ViewDay';
 import ViewWeek from './ViewWeek';
 import ViewLoading from './ViewLoading';
-import { translation } from './localization/translation';
 
 const Schedular = ({ ...props }) => {
   const {
@@ -16,8 +15,8 @@ const Schedular = ({ ...props }) => {
     selectedViewIndex,
     startDate,
     language,
+    localization,
   } = props;
-  const localization = useMemo(() => translation[language], [language]);
 
   const isSameDay = (d1, d2) =>
         d1.getDate() === d2.getDate() &&

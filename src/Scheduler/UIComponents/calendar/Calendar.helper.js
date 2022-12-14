@@ -146,7 +146,7 @@ export const WEEK_START_DAY = {
 };
 
 export const createDayStyles = obj => {
-  const { val, now, type, date, startDate, endDate, isArabic } = obj;
+  const { val, now, type, date, startDate, endDate, isRTL } = obj;
   const arr = val.split('-');
   const startDateObj = startDate !== '' ? new Date(startDate) : '';
   const endDateObj = startDate !== '' ? new Date(endDate) : '';
@@ -160,12 +160,12 @@ export const createDayStyles = obj => {
     if (val === startDate && val === endDate) {
       classDiv += ' calendar-one-date-v2 ';
     } else if (val === startDate) {
-      classDiv += isArabic ? ' calendar-start-date-arabic-v2 ' : ' calendar-start-date-v2 ';
+      classDiv += isRTL ? ' calendar-start-date-arabic-v2 ' : ' calendar-start-date-v2 ';
     } else if (endDate !== '') {
       if (valDate > startDateObj && valDate < endDateObj) {
         classDiv += ' calendar-diapason-date-v2 ';
       } else if (val === endDate) {
-        classDiv += isArabic ? ' calendar-end-date-arabic-v2 ' : ' calendar-end-date-v2 ';
+        classDiv += isRTL ? ' calendar-end-date-arabic-v2 ' : ' calendar-end-date-v2 ';
       }
     }
   }
@@ -174,13 +174,13 @@ export const createDayStyles = obj => {
       ? 'calendar-today-v2'
       : '';
   classDiv += todayClass;
-  // if(isArabic&&todayClass==='') classDiv+='calendar-today-v2'
+  // if(isRTL&&todayClass==='') classDiv+='calendar-today-v2'
   return classDiv;
 };
 
-export const transformYYYYMMDDtoMMDDYYYY = (yyyymmdd, isArabic) => {
+export const transformYYYYMMDDtoMMDDYYYY = (yyyymmdd, isRTL) => {
   const arr = yyyymmdd.split('-');
-  if(!isArabic || isArabic===undefined) return arr[1] + '/' + arr[2] + '/' + arr[0]; // eslint-disable-line
+  if(!isRTL || isRTL===undefined) return arr[1] + '/' + arr[2] + '/' + arr[0]; // eslint-disable-line
   return `${toIndiaDigits(arr[2])} - ${toIndiaDigits(arr[1])} - ${toIndiaDigits(arr[0])}`;
 };
 
