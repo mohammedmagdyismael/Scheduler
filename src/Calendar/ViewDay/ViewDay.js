@@ -23,7 +23,7 @@ import {
   RedDot,
   ColumnsInnerContainer,
   HalfSlot,
-} from './ViewDay.style';
+} from '../Schedular.style';
 import {
   getLocalizedHoursSlots,
   getSlotPositionInColumnGrid,

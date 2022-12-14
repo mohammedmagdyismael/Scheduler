@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from '../UIComponents/icon/Icon';
 import IconsStore from '../UIComponents/icon/IconsStore';
 import Icons from '../UIComponents/Icons';
-import { SlotDesc, SlotTitle, IconContainer, ExtendedToolTip } from './ViewDay.style';
+import { SlotDesc, SlotTitle, IconContainer, ExtendedToolTip } from '../Schedular.style';
 
 import {
   SlotTitleContainer,
