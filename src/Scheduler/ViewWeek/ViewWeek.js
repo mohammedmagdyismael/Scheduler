@@ -23,13 +23,13 @@ import {
   ColumnsInnerContainer,
   MoreLabelContainer,
 } from '../Schedular.style';
-import { getLocalizedDaysSlots, renderDataSlotMiniWeek,NUM_SHIFTS_TO_SHOW, getDaysSlots, isRTLLanguage } from '../helper';
+import { getLocalizedDaysSlots, renderDataSlotMiniWeek,NUM_SHIFTS_TO_SHOW, getDaysSlots } from '../helper';
 
 const ViewWeek = ({ ...props }) => {
   const {
     onClickHeaderAction,
     data,
-    language,
+    isRTL,
     onClickDataSlot,
     onClickSlot,
     extendDataSlot,
@@ -131,7 +131,7 @@ const ViewWeek = ({ ...props }) => {
       !dayExpandStatus.isExpanded
     ) {
       return (
-        <MoreLabelContainer onClick={() => expandDay(dayName)}>
+        <MoreLabelContainer onClick={e => { expandDay(dayName); e.stopPropagation(); }}>
           <p style={{ margin: '0px' }}>{`${dayDetails.daySlots.length - NUM_SHIFTS_TO_SHOW} ${localization.more}`}</p>
           <div style={{ margin: '2px 6px 0px' }}>
             <Icon
@@ -245,7 +245,7 @@ const ViewWeek = ({ ...props }) => {
       <ColumnsContainer>
         <ColumnsWrapper>
           {/** Time Line */}
-          <ColumnsInnerContainer isRTL={isRTLLanguage(language)}>
+          <ColumnsInnerContainer isRTL={isRTL}>
             <TableShiftWeek />
             {getLocalizedDaysSlots(localization, weekStartDay).map((slotValue, index) => (
               <DaySlotName

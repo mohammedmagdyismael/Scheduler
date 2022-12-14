@@ -32,7 +32,6 @@ import {
   generateTimeSlots,
   renderDataSlot,
   renderDataSlotMini,
-  isRTLLanguage,
 } from '../helper';
 
 const ViewDay = ({ ...props }) => {
@@ -53,6 +52,7 @@ const ViewDay = ({ ...props }) => {
     LastTimeSlotInViewTime,
     isOffDay,
     localization,
+    isRTL,
   } = props;
 
   const TimeSlots24Format = useMemo(() => generateTimeSlots(), []);
@@ -180,7 +180,7 @@ const ViewDay = ({ ...props }) => {
       <ColumnsContainer>
         <ColumnsWrapper>
           {/** Time Line */}
-          <ColumnsInnerContainer isRTL={isRTLLanguage(language)}>
+          <ColumnsInnerContainer isRTL={isRTL}>
             <TableShift />
             {getHoursSlots(localization, language).map(slotValue => (
               <HourSlotTimeValue key={slotValue}>{slotValue}</HourSlotTimeValue>

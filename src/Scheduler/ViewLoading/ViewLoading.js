@@ -15,12 +15,11 @@ import {
   ColumnsInnerContainer,
   SlotLoading,
 } from '../Schedular.style';
-import { isRTLLanguage } from '../helper';
 
 const ViewLoading = ({ ...props }) => {
   const {
     extendDayColumnWrapper,
-    language,
+    isRTL,
     extendSlot,
   } = props;
 
@@ -76,7 +75,7 @@ const ViewLoading = ({ ...props }) => {
       <ColumnsContainer>
         <ColumnsWrapper>
           {/** Empty Time Line for loading */}
-          <ColumnsInnerContainer isRTL={isRTLLanguage(language)}>
+          <ColumnsInnerContainer isRTL={isRTL}>
             <TableShift />
           </ColumnsInnerContainer>
           {/** Empty Data Column */}
