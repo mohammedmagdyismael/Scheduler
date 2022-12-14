@@ -11,18 +11,18 @@ import {
   RoomColumnTitle,
   WeekGridColumnsWrapper,
   ColumnsWrapper,
-  TableShift,
+  TableShiftWeek,
   DaySlotName,
-  Slot,
+  SlotWeek,
   RoomColumn,
   RoomsColumnsContainer,
   RoomColumnHeaderContainer,
-  DataSlot,
+  DataSlotWeek,
   RoomColumnDescription,
   IconContainer,
   ColumnsInnerContainer,
   MoreLabelContainer,
-} from './ViewWeek.style';
+} from '../Schedular.style';
 import { getLocalizedDaysSlots, renderDataSlotMini } from './helper';
 
 const ViewWeek = ({ ...props }) => {
@@ -187,7 +187,7 @@ const ViewWeek = ({ ...props }) => {
             <div style={{ position: 'relative' }}>
               {/** Draw Empty Grid Column */}
               {getLocalizedDaysSlots('en', weekStartDay).map((slot, index) => (
-                <Slot
+                <SlotWeek
                   extendSlot={extendSlot}
                   id={`${slot}-${index}`}
                   key={`cell-${slot}-${index}`}
@@ -211,7 +211,7 @@ const ViewWeek = ({ ...props }) => {
                       const { daySlots } = columnSlot;
                       daySlots.forEach(slotObj => {
                         slotsList.push(
-                          <DataSlot
+                          <DataSlotWeek
                             isDimmed={slotObj.isDimmed}
                             extendDataSlot={extendDataSlot}
                             key={`${dayGrid.columnTitle}-${slotObj.id}`}
@@ -221,7 +221,7 @@ const ViewWeek = ({ ...props }) => {
                             }}
                           >
                             {renderDataSlotMini(slotObj, extendSlotTitle, extendSlotDesc)}
-                          </DataSlot>,
+                          </DataSlotWeek>,
                         );
                       });
                       const dayExpandStatus = expandingDayStatusList.find(
@@ -233,7 +233,7 @@ const ViewWeek = ({ ...props }) => {
                     }
                   })}
                   {showMoreLabel(dayGrid, slot)}
-                </Slot>
+                </SlotWeek>
               ))}
             </div>
           </RoomColumn>
@@ -248,7 +248,7 @@ const ViewWeek = ({ ...props }) => {
         <ColumnsWrapper>
           {/** Time Line */}
           <ColumnsInnerContainer isRTL={language !== 'en'}>
-            <TableShift />
+            <TableShiftWeek />
             {getLocalizedDaysSlots(language, weekStartDay).map((slotValue, index) => (
               <DaySlotName
                 slotHeight={getSlotHeight(data, getLocalizedDaysSlots('en', weekStartDay)[index]) + 2}

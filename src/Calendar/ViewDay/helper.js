@@ -9,7 +9,7 @@ import {
   SlotTitleContainer,
   SlotDescContainer,
   SlotContentContainer,
-} from '../ViewWeek/ViewWeek.style';
+} from '../Schedular.style';
 
 export const toIndiaDigits = number => {
   const id = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];

@@ -2,6 +2,50 @@
 import styled from 'styled-components';
 import Tooltip from './UIComponents/tooltip/Tooltip';
 
+export const RoomColumnTitle = styled.p`
+  margin: 0px;
+  text-align: center;
+
+  color: #484848;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+`;
+
+export const RoomColumnDescription = styled.p`
+  margin: 0px;
+  text-align: center;
+
+  color: #7e7e7e;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 18px;
+`;
+
+export const RoomColumnHeaderContainer = styled.div`
+  // padding: 8px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 54px;
+`;
+
+export const MoreLabelContainer = styled.div`
+  color: #0070cd;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  width: fit-content;
+  margin: 8px;
+  display: flex;
+`;
+
+export const WeekGridColumnsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const GrayOverLay = styled.div`
   width: 100%;
   height: 100%;
@@ -93,9 +137,68 @@ export const TableShift = styled.div`
   height: 44px;
 `;
 
+export const TableShiftWeek = styled.div`
+  width: 65px;
+  height: 54px;
+`;
+
+export const DaySlotName = styled.p`
+  text-align: center;
+  margin: 0px;
+  height: ${props => (props.slotHeight ? `${props.slotHeight}px !important` : '132px !important')};
+
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 18px;
+  color: #7e7e7e;
+`;
+
+
 export const ColumnsContainer = styled.div`
   width: 100%;
   height: 100%;
+`;
+
+export const RoomColumnWrapper = styled.div`
+  display: flex;
+  background: #fff;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 185px;
+  ${props => props.extendRoomColumnWrapper || ''};
+`;
+
+export const RoomsColumnsContainer = styled.div`
+  // overflow-x: scroll;
+  // width: min-content;
+  display: grid;
+  // overflow: auto;
+  ::-webkit-scrollbar {
+    width: 1px;
+    height: 1px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #9c9c9c;
+    border-radius: 15px;
+  }
+`;
+
+export const SlotContentContainer = styled.div`
+  display: flex;
+`;
+
+export const SlotDescContainer = styled.div`
+  display: inline-grid;
+  margin: 0px 4px;
+`;
+
+export const SlotTitleContainer = styled.div`
+  display: flex;
+`;
+
+export const RoomColumn = styled.div`
+  width: 100%;
 `;
 
 export const SlotLoading = styled.div`
@@ -127,6 +230,12 @@ export const ExtendedToolTip = styled(Tooltip)`
       top: 100%;
     }
   }
+`;
+
+export const WeekGridColumnsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 export const StyledSeparator = styled.div`
@@ -232,6 +341,64 @@ export const Slot = styled.div`
     }
   `}
   ${props => props.extendSlot || ''};
+`;
+
+export const SlotWeek = styled.div`
+  height: ${props => (props.slotHeight ? `${props.slotHeight}px !important` : '130px !important')};
+  border: 1px solid #e7e7e76b;
+  background: ${props => (props.isDisabled ? '#F7F8FA' : '#ffff')};
+  ${props =>
+    props.isClickable &&
+    `
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+      background-color: #e7e7e76b;
+    }
+  `}
+  ${props => props.extendSlot || ''};
+`;
+
+
+export const DataSlotWeek = styled.div`
+  padding: 5px 8px 3px;
+  gap: 12px;
+  width: 89%;
+  margin-bottom: 2px;
+  
+  border-radius: 4px;
+  color: #fff;
+  line-height: 22px;
+  height: 20px;
+  & > p {
+    margin: 0px;
+  }
+
+  .tooltip {
+    width: 100%;
+  }
+
+  .tooltip > div {
+    overflow: hidden;
+  }
+
+  background: #e6f1ff;
+  ${props =>
+    props.isDimmed
+      && `
+      opacity: 0.4;
+    `}
+
+  ${props =>
+    props.isClickable &&
+    `
+    cursor: pointer;
+    &:hover {
+      color: #fff;
+      background-color: #bbd9ff;
+    }
+  `}
+  ${props => props.extendDataSlot || ''};
 `;
 
 export const DataSlot = styled.div`

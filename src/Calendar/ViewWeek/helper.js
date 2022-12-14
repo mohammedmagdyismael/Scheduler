@@ -11,7 +11,7 @@ import {
   SlotTitleContainer,
   SlotDescContainer,
   SlotContentContainer,
-} from './ViewWeek.style';
+} from '../Schedular.style';
 
 export const daysNamesAbbrev = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fri', 'Sa'];
 export const daysNames = [
