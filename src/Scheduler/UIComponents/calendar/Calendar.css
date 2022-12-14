@@ -137,11 +137,8 @@
 }
 .calendar-start-date-arabic-v2 {
   position: relative;
-  background-color: #0070cd !important;
-  border-bottom-right-radius: 8px !important;
-  border-top-right-radius: 8px !important;
-  border-bottom-left-radius: unset !important;
-  border-top-left-radius: unset !important;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
   color: white !important;
 }
 .calendar-start-date-arabic-v2::before {
@@ -180,11 +177,8 @@
 }
 .calendar-end-date-arabic-v2 {
   position: relative;
-  background: #0070cd !important;
-  border-bottom-left-radius: 8px !important;
-  border-top-left-radius: 8px !important;
-  border-bottom-right-radius: unset !important;
-  border-top-right-radius: unset !important;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
   color: white !important;
 }
 .calendar-end-date-arabic-v2::before {
@@ -322,7 +316,17 @@
 }
 .calendar-days-arabic-v2 {
   transform: rotateY(180deg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
+.calendar-days-v2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .calendar-day-arabic-v2 {
   display: flex;
   align-items: center;
@@ -346,3 +350,9 @@
   background-color: #e0e0e0;
   border-radius: 8px;
 }
+
+.calendar-week-days-v2 {
+  display: flex;
+  justify-content: center;
+}
+
