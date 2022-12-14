@@ -8,4 +8,10 @@ export const WEEK_START_DAY = {
     DAY: 0,
     WEEK: 1,
   };
+
+  export const LANGUAGES = {
+    EN: 'en',
+    AR: 'ar',
+  };
+  
   

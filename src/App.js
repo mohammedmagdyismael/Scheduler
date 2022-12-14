@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Schedular from './Calendar';
+import Schedular from './Scheduler';
 import Filter from './Calendar/UIComponents/Filter';
-import { WEEK_START_DAY, SCHEDULAR_VIEWS } from './App.helper';
+import { WEEK_START_DAY, SCHEDULAR_VIEWS, LANGUAGES } from './App.helper';
 import './App.css'
 
 const App = ({ ...props }) => {
     const [startDate, setStartDate] = useState('12/13/2022');
     const [endDate, setEndDate] = useState('12/28/2022');
     const [datePickerMode, setDatePickerMode] = useState(SCHEDULAR_VIEWS.DAY);
-    const [language, setLanguage] = useState('en');
+    const [language, setLanguage] = useState(LANGUAGES.EN);
     const weekStartDay = WEEK_START_DAY.SATURDAY;
 
     /**
