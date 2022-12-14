@@ -26,7 +26,7 @@ export const MonthsWrapper = styled.div`
 
 export const MonthNameContainer = styled.div`
     color: ${props => props.isSelected && '#ffff'};
-    background-color: ${props => props.isSelected && '#5a8ec2'};
+    background-color: ${props => props.isSelected && '#0070cd'};
     cursor: pointer;
     margin: 15px 0px;
     display: flex;
@@ -37,8 +37,10 @@ export const MonthNameContainer = styled.div`
     border-radius: 8px;
     height: 45px;
     &:hover {
-        color: #fff;
-        background-color: #0A66C2;
+        ${props => !props.isSelected && `
+            color: #58595b;
+            background-color: #e0e0e0;
+        `}
     }
 `;
 
