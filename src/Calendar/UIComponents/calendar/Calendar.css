@@ -30,13 +30,23 @@
   color: #484848;
   font-weight: 600;
 }
-.calendar-header-title-month-v2, .calendar-header-title-year-v2 {
+.calendar-header-title-month-v2 {
   color: #484848;
   cursor: default;
   font-size: 16px;
   font-weight: 600;
-  margin: 0;
+  margin: 0px 5px;
   z-index: 5;
+}
+
+.calendar-header-title-year-v2 { 
+  color: #484848;
+  cursor: default;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0px 5px;
+  z-index: 5;
+  cursor: pointer;
 }
 
 .calendar-header-title-year-input-v2 svg {

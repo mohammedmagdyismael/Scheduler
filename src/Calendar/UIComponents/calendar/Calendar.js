@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
+import { 
+  Container,
+  MonthsWrapper,
+  YearNameContainer,
+  YearNameWrapper,
+} from './Calendar.style';
+
 import Icon from '../icon/Icon';
 import IconsStore from '../icon/IconsStore';
 import Icons from '../Icons';
-
-import Select from '../select/Select';
 import Text from '../text/Text';
 import withDisplayName from '../WithDisplayName';
 import {
@@ -46,10 +51,20 @@ import './Calendar.css';
  * Doesn't support week selection
  */
 
+const CALENDAR_VIEWS = {
+  YEARS: 0,
+  MONTHS: 1,
+  DAYS: 2,
+}
+
 class Calendar extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getStartState(this.props);
+    this.state = {
+      ...this.getStartState(this.props),
+      viewIndex: CALENDAR_VIEWS.DAYS,
+
+    };
   }
 
   /**
@@ -443,6 +458,32 @@ class Calendar extends Component {
     return yearsOptions;
   };
 
+  renderYears = () => {
+    const years = [];
+    for(let i = new Date().getFullYear() - 5; i < new Date().getFullYear() + 7; i++) {
+        years.push(
+            <YearNameContainer isSelected={this.state.currentYear === i} onClick={() => this.onYearInYearsViewClick(i)}>
+                    <YearNameWrapper>
+                        <p style={{ margin: '0px' }}>{this.props.isArabic ? toIndiaDigits(`${i}`) : i}</p>
+                    </YearNameWrapper>
+            </YearNameContainer>
+        )
+      }
+
+    return(
+    <Container>
+        <MonthsWrapper>
+            {years}
+        </MonthsWrapper>
+    </Container>
+    )
+  }
+
+  onYearInYearsViewClick = year => {
+    this.onChangeTitleYear(year);
+    this.setState({ viewIndex: CALENDAR_VIEWS.DAYS });
+  }
+
   render() {
     const {
       now,
@@ -457,6 +498,7 @@ class Calendar extends Component {
       showErrorPopUp,
       checkTitleYear,
       weekDaysArabic,
+      viewIndex,
     } = this.state;
     const { type, isArabic } = this.props;
     const prevMonthAr = [];
@@ -490,194 +532,188 @@ class Calendar extends Component {
       titleYearClass += ' year-v2--dange';
     }
     return (
-      <div className="calendar-wrapper-v2">
-        <div className="calendar-header-v2">
-          <div
-            className={ClassNames('calendar-arrow-v2', {
-              'calendar-arrow-v2--disable': this.state.disablePreviousMonthButton,
-              'calendar-arrow-v2--rotated': isArabic,
-            })}
-            onClick={this.onClickLeftArrowCalendar}
-            onKeyDown={() => {}}
-          >
-            <Icon
-              icon={new IconsStore(Icons).getIcon('arrow_left')}
-              width={ARROW_WIDTH}
-              color={getIconColor(this.state.disablePreviousMonthButton)}
-            />
-          </div>
-          <div className="calendar-header-title-v2">
-            <div className="calendar-header-title-month-v2">{currentMonthName}</div>
-            <div className="calendar-header-title-year-v2">
-              <Select
-                className={titleYearClass}
-                items={this.generateYears()}
-                select={currentYear}
-                onChange={this.onChangeTitleYear}
-                placeholder="Year"
-                noSearch
-                noIcon
-                reverse={isArabic}
+      <div>
+        {CALENDAR_VIEWS.DAYS === viewIndex && (
+        <div className="calendar-wrapper-v2">
+          <div className="calendar-header-v2">
+            <div
+              className={ClassNames('calendar-arrow-v2', {
+                'calendar-arrow-v2--disable': this.state.disablePreviousMonthButton,
+                'calendar-arrow-v2--rotated': isArabic,
+              })}
+              onClick={this.onClickLeftArrowCalendar}
+              onKeyDown={() => {}}
+            >
+              <Icon
+                icon={new IconsStore(Icons).getIcon('arrow_left')}
+                width={ARROW_WIDTH}
+                color={getIconColor(this.state.disablePreviousMonthButton)}
+              />
+            </div>
+            <div className="calendar-header-title-v2">
+              <div className="calendar-header-title-month-v2">{currentMonthName}</div>
+              <div className="calendar-header-title-year-v2" onClick={() => this.setState({ viewIndex: CALENDAR_VIEWS.YEARS })}>{this.props.isArabic ? toIndiaDigits(`${currentYear}`) : currentYear}</div>
+            </div>
+            <div
+              className={ClassNames('calendar-arrow-v2', {
+                'calendar-arrow-v2--disable': this.state.disableNextMonthButton,
+                'calendar-arrow-v2--rotated': isArabic,
+              })}
+              onClick={this.onClickRightArrowCalendar}
+              onKeyDown={() => {}}
+            >
+              <Icon
+                icon={new IconsStore(Icons).getIcon('arrow_right')}
+                width={ARROW_WIDTH}
+                color={getIconColor(this.state.disableNextMonthButton)}
               />
             </div>
           </div>
-          <div
-            className={ClassNames('calendar-arrow-v2', {
-              'calendar-arrow-v2--disable': this.state.disableNextMonthButton,
-              'calendar-arrow-v2--rotated': isArabic,
-            })}
-            onClick={this.onClickRightArrowCalendar}
-            onKeyDown={() => {}}
-          >
-            <Icon
-              icon={new IconsStore(Icons).getIcon('arrow_right')}
-              width={ARROW_WIDTH}
-              color={getIconColor(this.state.disableNextMonthButton)}
-            />
-          </div>
-        </div>
-        <div className="calendar-body-v2" onClick={this.onClickCalendar} onKeyDown={() => {}}>
-          <div
-            className={
-              showErrorPopUp ? 'calendar-error-popup-show-v2' : 'calendar-error-popup-hide-v2'
-            }
-            onClick={this.onClickErrorPopUp}
-            onKeyDown={() => {}}
-          >
-            {errPopUp}
-          </div>
-          <div className="calendar-week-days-v2">
+          <div className="calendar-body-v2" onClick={this.onClickCalendar} onKeyDown={() => {}}>
+            <div
+              className={
+                showErrorPopUp ? 'calendar-error-popup-show-v2' : 'calendar-error-popup-hide-v2'
+              }
+              onClick={this.onClickErrorPopUp}
+              onKeyDown={() => {}}
+            >
+              {errPopUp}
+            </div>
+            <div className="calendar-week-days-v2">
+              {isArabic ? (
+                <div className="week-names-v2">
+                  {weekDaysArabic.map(day => (
+                    <div key={day} className="calendar-weekday-v2 calendar-weekday-arabic-v2">
+                      {day}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="week-names-v2">
+                  {weekDays.map(day => (
+                    <div key={day} className="calendar-weekday-v2">
+                      {day}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             {isArabic ? (
-              <div className="week-names-v2">
-                {weekDaysArabic.map(day => (
-                  <div key={day} className="calendar-weekday-v2 calendar-weekday-arabic-v2">
-                    {day}
-                  </div>
-                ))}
+              <div className="calendar-days-arabic-v2">
+                {prevMonthAr.map(val => {
+                  const arr = val.split('-');
+                  let classDiv = 'calendar-day-arabic-v2 calendar-opacity-50-v2 ';
+                  classDiv += createDayStyles({
+                    val,
+                    now,
+                    type,
+                    date,
+                    startDate,
+                    endDate,
+                    isArabic,
+                  });
+                  return (
+                    <div key={val} id={this.props.id.concat(val)} className={classDiv}>
+                      {toIndiaDigits(arr[2])}
+                    </div>
+                  );
+                })}
+                {thisMonthAr.map(val => {
+                  const arr = val.split('-');
+                  let classDiv = 'calendar-day-arabic-v2 ';
+                  classDiv += createDayStyles({
+                    val,
+                    now,
+                    type,
+                    date,
+                    startDate,
+                    endDate,
+                    isArabic,
+                  });
+                  return (
+                    <div key={val} id={this.props.id.concat(val)} className={classDiv}>
+                      {toIndiaDigits(arr[2])}
+                    </div>
+                  );
+                })}
+                {nextMonthAr.map(val => {
+                  const arr = val.split('-');
+                  let classDiv = 'calendar-day-arabic-v2 calendar-opacity-50-v2 ';
+                  classDiv += createDayStyles({
+                    val,
+                    now,
+                    type,
+                    date,
+                    startDate,
+                    endDate,
+                    isArabic,
+                  });
+                  return (
+                    <div key={val} id={this.props.id.concat(val)} className={classDiv}>
+                      {toIndiaDigits(arr[2])}
+                    </div>
+                  );
+                })}
               </div>
             ) : (
-              <div className="week-names-v2">
-                {weekDays.map(day => (
-                  <div key={day} className="calendar-weekday-v2">
-                    {day}
-                  </div>
-                ))}
+              <div className="calendar-days-v2">
+                {prevMonthAr.map(val => {
+                  const arr = val.split('-');
+                  let classDiv = 'calendar-day-v2 calendar-opacity-50-v2 ';
+                  classDiv += createDayStyles({
+                    val,
+                    now,
+                    type,
+                    date,
+                    startDate,
+                    endDate,
+                  });
+                  return (
+                    <div key={val} id={this.props.id.concat(val)} className={classDiv}>
+                      {arr[2]}
+                    </div>
+                  );
+                })}
+                {thisMonthAr.map(val => {
+                  const arr = val.split('-');
+                  let classDiv = 'calendar-day-v2 ';
+                  classDiv += createDayStyles({
+                    val,
+                    now,
+                    type,
+                    date,
+                    startDate,
+                    endDate,
+                  });
+                  return (
+                    <div key={val} id={this.props.id.concat(val)} className={classDiv}>
+                      {arr[2]}
+                    </div>
+                  );
+                })}
+                {nextMonthAr.map(val => {
+                  const arr = val.split('-');
+                  let classDiv = 'calendar-day-v2 calendar-opacity-50-v2 ';
+                  classDiv += createDayStyles({
+                    val,
+                    now,
+                    type,
+                    date,
+                    startDate,
+                    endDate,
+                  });
+                  return (
+                    <div key={val} id={this.props.id.concat(val)} className={classDiv}>
+                      {arr[2]}
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
-          {isArabic ? (
-            <div className="calendar-days-arabic-v2">
-              {prevMonthAr.map(val => {
-                const arr = val.split('-');
-                let classDiv = 'calendar-day-arabic-v2 calendar-opacity-50-v2 ';
-                classDiv += createDayStyles({
-                  val,
-                  now,
-                  type,
-                  date,
-                  startDate,
-                  endDate,
-                  isArabic,
-                });
-                return (
-                  <div key={val} id={this.props.id.concat(val)} className={classDiv}>
-                    {toIndiaDigits(arr[2])}
-                  </div>
-                );
-              })}
-              {thisMonthAr.map(val => {
-                const arr = val.split('-');
-                let classDiv = 'calendar-day-arabic-v2 ';
-                classDiv += createDayStyles({
-                  val,
-                  now,
-                  type,
-                  date,
-                  startDate,
-                  endDate,
-                  isArabic,
-                });
-                return (
-                  <div key={val} id={this.props.id.concat(val)} className={classDiv}>
-                    {toIndiaDigits(arr[2])}
-                  </div>
-                );
-              })}
-              {nextMonthAr.map(val => {
-                const arr = val.split('-');
-                let classDiv = 'calendar-day-arabic-v2 calendar-opacity-50-v2 ';
-                classDiv += createDayStyles({
-                  val,
-                  now,
-                  type,
-                  date,
-                  startDate,
-                  endDate,
-                  isArabic,
-                });
-                return (
-                  <div key={val} id={this.props.id.concat(val)} className={classDiv}>
-                    {toIndiaDigits(arr[2])}
-                  </div>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="calendar-days-v2">
-              {prevMonthAr.map(val => {
-                const arr = val.split('-');
-                let classDiv = 'calendar-day-v2 calendar-opacity-50-v2 ';
-                classDiv += createDayStyles({
-                  val,
-                  now,
-                  type,
-                  date,
-                  startDate,
-                  endDate,
-                });
-                return (
-                  <div key={val} id={this.props.id.concat(val)} className={classDiv}>
-                    {arr[2]}
-                  </div>
-                );
-              })}
-              {thisMonthAr.map(val => {
-                const arr = val.split('-');
-                let classDiv = 'calendar-day-v2 ';
-                classDiv += createDayStyles({
-                  val,
-                  now,
-                  type,
-                  date,
-                  startDate,
-                  endDate,
-                });
-                return (
-                  <div key={val} id={this.props.id.concat(val)} className={classDiv}>
-                    {arr[2]}
-                  </div>
-                );
-              })}
-              {nextMonthAr.map(val => {
-                const arr = val.split('-');
-                let classDiv = 'calendar-day-v2 calendar-opacity-50-v2 ';
-                classDiv += createDayStyles({
-                  val,
-                  now,
-                  type,
-                  date,
-                  startDate,
-                  endDate,
-                });
-                return (
-                  <div key={val} id={this.props.id.concat(val)} className={classDiv}>
-                    {arr[2]}
-                  </div>
-                );
-              })}
-            </div>
-          )}
         </div>
+        )}
+        {CALENDAR_VIEWS.YEARS === viewIndex && this.renderYears()}
       </div>
     );
   }
@@ -698,7 +734,7 @@ Calendar.propTypes = {
 
 Calendar.defaultProps = {
   minDate: '2015-01-01',
-  maxDate: `${new Date().getFullYear() + 1}-12-31`,
+  maxDate: `${new Date().getFullYear() + 5}-12-31`,
   startDate: '', // for type: range
   endDate: '', // for type: range
   date: '', // for type: single
