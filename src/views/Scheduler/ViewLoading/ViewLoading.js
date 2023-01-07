@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
-import ShimmerEffect from '../UIComponents/shimmerEffect/ShimmerEffect';
-import Rect from '../UIComponents/shimmerEffect/Rect';
-import { NoAnimationBox } from '../UIComponents/shimmerEffect/NoAnimationContainer';
+import ShimmerEffect from 'app/components/shimmerEffect/ShimmerEffect';
+import Rect from 'app/components/shimmerEffect/Rect';
+import { NoAnimationBox } from 'app/components/shimmerEffect/NoAnimationContainer';
 import {
   ColumnHeaderWrapper,
   DataColumnsContainer,

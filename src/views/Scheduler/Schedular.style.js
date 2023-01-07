@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
-import Tooltip from './UIComponents/tooltip/Tooltip';
+import Tooltip from 'app/components/tooltip/Tooltip';
 
 export const RoomColumnTitle = styled.p`
   margin: 0px;

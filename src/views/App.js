@@ -1,20 +1,20 @@
 import React, { useState, useMemo } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setLanguage } from 'app/store/actions/app';
+import Filter from 'app/components/Filter';
+import { withTranslation } from 'app/withTranslation/withTranslation';
 import Schedular from './Scheduler';
-import Filter from './Scheduler/UIComponents/Filter';
-import { translation } from './localization/translation';
-
-import { WEEK_START_DAY, SCHEDULAR_VIEWS, LANGUAGES, isRTLLanguage } from './App.helper';
+import { WEEK_START_DAY, SCHEDULAR_VIEWS, isRTLLanguage } from './App.helper';
 import './App.css';
 
-const App = () => {
+const App = ({ ...props }) => {
+    const { localization, language } = props;
     const [startDate, setStartDate] = useState('12/13/2022');
     const [endDate, setEndDate] = useState('12/28/2022');
     const [datePickerMode, setDatePickerMode] = useState(SCHEDULAR_VIEWS.DAY);
-    const [language, setLanguage] = useState(LANGUAGES.EN);
     const weekStartDay = WEEK_START_DAY.SATURDAY;
     const isRTL = isRTLLanguage(language);
-    const localization = useMemo(() => translation[language], [language]);
-
 
     /**
      * selectedViewIndex: => Day view: 0 , Week view: 1  
@@ -248,7 +248,7 @@ const App = () => {
         <div style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
             <Filter 
                 localization={localization}
-                setLanguage={setLanguage}
+                setLanguage={props.setLanguage}
                 startDate={startDate}
                 endDate={endDate}
                 language={language}  
@@ -295,4 +295,16 @@ const App = () => {
     )
 }
 
-export default App;
+const mapStateToProps = state => ({
+    language: state.app.language,
+  });
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+        setLanguage,
+    },
+    dispatch,
+  );
+
+  export default withTranslation(connect(mapStateToProps, mapDispatchToProps)(App));

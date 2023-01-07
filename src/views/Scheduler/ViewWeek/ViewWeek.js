@@ -1,9 +1,9 @@
 /* eslint-disable indent */
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
-import Icon from '../UIComponents/icon/Icon';
-import IconsStore from '../UIComponents/icon/IconsStore';
-import Icons from '../UIComponents/Icons';
+import Icon from 'app/components/icon/Icon';
+import IconsStore from 'app/components/icon/IconsStore';
+import Icons from 'app/components/Icons';
 import {
   ColumnsContainer,
   RoomColumnWrapper,

@@ -9,7 +9,7 @@ import IconsStore from '../../icon/IconsStore';
 import Icons from '../../Icons';
 import Calendar from '../../calendar/Calendar';
 import './dropdowns.css';
-import { isRTLLanguage } from '../../../helper';
+import { isRTLLanguage } from 'app/helper';
 import {
   extendTodayButton,
   DatePickerWrapper,

@@ -1,8 +1,8 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
-import Icon from './UIComponents/icon/Icon';
-import IconsStore from './UIComponents/icon/IconsStore';
-import Icons from './UIComponents/Icons';
+import Icon from 'app/components/icon/Icon';
+import IconsStore from 'app/components/icon/IconsStore';
+import Icons from 'app/components/Icons';
 import {
   SlotTitleContainer,
   SlotDescContainer,

@@ -1,0 +1,16 @@
+{
+  "sunday": "Sunday", 
+  "monday": "Monday", 
+  "tuesday": "Tuesday", 
+  "wednesday": "Wednesday", 
+  "thursday": "Thursday", 
+  "friday": "Friday", 
+  "saturday": "Saturday",
+  "am": "am",
+  "pm": "pm",
+  "day": "Day",
+  "week": "Week",
+  "today": "Today",
+  "thisWeek": "This week",
+  "more": "more"
+}
