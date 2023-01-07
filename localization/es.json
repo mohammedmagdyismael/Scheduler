@@ -1,0 +1,16 @@
+{
+  "sunday": "Domingo", 
+  "monday": "Lunes", 
+  "tuesday": "Martes", 
+  "wednesday": "Miércoles", 
+  "thursday": "Jueves", 
+  "friday": "Viernes", 
+  "saturday": "Sábado",
+  "am": "am",
+  "pm": "pm",
+  "day": "Día",
+  "week": "Semana",
+  "today": "Este Dia",
+  "thisWeek": "Esta semana",
+  "more": "más"
+}
