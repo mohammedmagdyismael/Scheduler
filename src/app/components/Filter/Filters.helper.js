@@ -1,4 +1,5 @@
 import React from 'react';
+import { languages } from 'app/helper'
 import Icon from '../icon/Icon';
 import IconsStore from '../icon/IconsStore';
 import ClassNames from 'classnames';
@@ -154,21 +155,6 @@ export const getDatePickerDropDownList = localization => {
   });
   return dropdownList;
 };
-
-export const languages = [
-  {
-    name: 'English',
-    key: 'en',
-  },
-  {
-    name: 'عربي',
-    key: 'ar',
-  },
-  {
-    name: 'Española',
-    key: 'es',
-  },
-];
 
 export const getLanguagesList = () => {
   const dropdownList = [];

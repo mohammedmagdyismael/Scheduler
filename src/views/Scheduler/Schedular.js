@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useMemo } from 'react';
-import { SCHEDULAR_VIEWS, getScrollPositionForDayStartTime, isRTLLanguage } from './helper';
+import { isRTLLanguage } from 'app/helper';
+import { SCHEDULAR_VIEWS, getScrollPositionForDayStartTime } from './helper';
 import { SchedularViewsContainer } from './Schedular.style';
 import ViewDay from './ViewDay';
 import ViewWeek from './ViewWeek';

@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { setLanguage } from 'app/store/actions/app';
 import Filter from 'app/components/Filter';
 import { withTranslation } from 'app/withTranslation/withTranslation';
+import { isRTLLanguage } from 'app/helper';
 import Schedular from './Scheduler';
-import { WEEK_START_DAY, SCHEDULAR_VIEWS, isRTLLanguage } from './App.helper';
+import { WEEK_START_DAY, SCHEDULAR_VIEWS } from './App.helper';
 import './App.css';
 
 const App = ({ ...props }) => {

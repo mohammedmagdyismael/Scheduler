@@ -12,8 +12,7 @@ import {
   IconContainer,
   ExtendedToolTip,
 } from './Schedular.style';
-
-const rtl = ['ar'];
+import { isRTLLanguage } from 'app/helper';
 
 export const NUM_SHIFTS_TO_SHOW = 3;
 
@@ -370,12 +369,7 @@ export const renderDataSlotMiniWeek = (columnSlot, extendSlotTitle, extendSlotDe
     </ExtendedToolTip>
   );
 };
-
-export const isRTLLanguage = language => {
-    return rtl.includes(language) 
-  };
   
-
 export const getHoursSlots = (localization, language) => {
   if (localization) {
     const localizedTimeSlots = hoursSlotsListLocal(localization);
