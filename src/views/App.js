@@ -1,15 +1,26 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ReactGA from 'react-ga';
 import { setLanguage } from 'app/store/actions/app';
 import Filter from 'app/components/Filter';
 import { withTranslation } from 'app/withTranslation/withTranslation';
 import { isRTLLanguage } from 'app/helper';
 import Schedular from './Scheduler';
 import { WEEK_START_DAY, SCHEDULAR_VIEWS } from './App.helper';
+import useAnalyticsEventTracker from './useAnalyticsEventTracker';
 import './App.css';
 
+const TRACKING_ID = "UA-146898627-1"; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
+
 const App = ({ ...props }) => {
+    const gaEventTracker = useAnalyticsEventTracker('Schedular App');
+
+    useEffect(() => {
+        gaEventTracker('Page Loaded');
+    }, []);
+
     const { localization, language } = props;
     const [startDate, setStartDate] = useState('12/13/2022');
     const [endDate, setEndDate] = useState('12/28/2022');
@@ -249,16 +260,17 @@ const App = ({ ...props }) => {
         <div style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
             <Filter 
                 localization={localization}
-                setLanguage={props.setLanguage}
+                setLanguage={val => { props.setLanguage(val); gaEventTracker('Change Language');}}
                 startDate={startDate}
                 endDate={endDate}
                 language={language}  
                 datePickerMode={datePickerMode}
-                setDatePickerMode={setDatePickerMode}
+                setDatePickerMode={val => {setDatePickerMode(val); gaEventTracker('Change Schedular View'); }}
                 onChangeDate={val => {
                     if (val) {
                         setStartDate(val.startDate);
-                        setEndDate(val.endDate)
+                        setEndDate(val.endDate);
+                        gaEventTracker('Change Date From Picker');
                     }
                 }}
                 weekStartDay={weekStartDay}
@@ -278,12 +290,15 @@ const App = ({ ...props }) => {
                 weekStartDay={weekStartDay}
                 onClickDataSlot={val => {
                     alert(`Data Slot is Clicked!`);
+                    gaEventTracker('Data Slot is Clicked!');
                 }}
                 onClickSlot={val => {
                     alert(`Empty Slot is Clicked!`);
+                    gaEventTracker('Empty Slot is Clicked!');
                 }}
                 onClickHeaderAction={() => {
                     alert(`Column Header is Clicked!`);
+                    gaEventTracker('Column Header is Clicked!');
                 }}
                 // extendDataSlot={}
                 // extendSlot={}
